@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'festival_config.dart';
+
 /// Custom Exception for the plugin,
 /// thrown whenever sufficient permissions weren't granted
 class LocationPermissionException implements Exception {
@@ -270,8 +272,7 @@ class WeatherStation {
     /// Build HTTP get url by passing the required parameters
     String url = 'http://api.openweathermap.org/data/2.5/' +
         '$tag?' +
-        'lat=51.6082823&' +
-        'lon=6.8409733&' +
+        geoLocationQuery +
         'appid=$_apiKey';
 
     /// Send HTTP get response with the url
