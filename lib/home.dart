@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'event_detail_view.dart';
 import 'event_list_view.dart';
+import 'festival_config.dart';
 import 'i18n.dart';
 import 'menu.dart';
 import 'model.dart';
@@ -75,15 +76,15 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     ));
   }
 
-  Widget _buildEventList(BuildContext context, EventFilter eventFilter,
-      {String datum, bool bandView = false}) {
+  Widget _buildEventList(BuildContext context, {DateTime date}) {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
-        if (datum != null) WeatherWidget(datum),
+        if (date != null) WeatherWidget(date),
         EventListView(
-          eventFilter: eventFilter,
-          bandView: bandView,
+          eventFilter:
+              date != null ? Schedule.dayOf(date) : Schedule.allBandsOf,
+          bandView: date == null,
           openEventDetails: (event) => _openEventDetails(context, event),
           favoritesOnly: favoritesOnly,
         ),
@@ -93,8 +94,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   int get _initialTab {
     final now = DateTime.now();
-    if (now.year == 2019 && now.month == 7 && now.day >= 5 && now.day <= 7) {
-      return now.day - 4;
+    final startOfDay = DateTime(now.year, now.month, now.day);
+    final index = days.indexOf(startOfDay);
+    if (index >= 0) {
+      return index + 1;
     }
     return 0;
   }
@@ -112,13 +115,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           bottom: TabBar(
             tabs: [
               Tab(text: i18n.bands),
-              Tab(text: i18n.dayOne),
-              Tab(text: i18n.dayTwo),
-              Tab(text: i18n.dayThree),
+              ...List.generate(
+                  days.length, (index) => Tab(text: i18n.dayTitle(index + 1))),
             ],
           ),
           title: Text(
-            'RUHRPOTT RODEO >',
+            festivalName,
             style: theme.textTheme.display1,
           ),
           actions: <Widget>[
@@ -131,13 +133,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         ),
         body: TabBarView(
           children: [
-            _buildEventList(context, Schedule.allBandsOf, bandView: true),
-            _buildEventList(context, Schedule.firstDayOf,
-                datum: "2019-07-05T14:00:00.000"),
-            _buildEventList(context, Schedule.secondDayOf,
-                datum: "2019-07-06T14:00:00.000"),
-            _buildEventList(context, Schedule.thirdDayOf,
-                datum: "2019-07-07T14:00:00.000"),
+            _buildEventList(context),
+            ...days.map((date) => _buildEventList(context, date: date)),
           ],
         ),
       ),

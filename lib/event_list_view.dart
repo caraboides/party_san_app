@@ -3,10 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'i18n.dart';
+import 'festival_config.dart';
 import 'model.dart';
 import 'my_schedule.dart';
+import 'schedule.dart';
 
-typedef EventFilter = List<Event> Function(BuildContext context);
 const double _listItemHeight = 70;
 
 class EventListView extends StatefulWidget {
@@ -210,9 +211,8 @@ class _EventDescription extends StatelessWidget {
     final i18n = AppLocalizations.of(context);
     final formatter = bandView ? i18n.dateTimeFormat : i18n.timeFormat;
     return Column(
-      crossAxisAlignment: bandView || stage == "Ruhrpott Stage"
-          ? CrossAxisAlignment.start
-          : CrossAxisAlignment.end,
+      crossAxisAlignment:
+          bandView ? CrossAxisAlignment.start : stageAlignment(stage),
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(

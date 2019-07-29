@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:optional/optional_internal.dart';
 import 'model.dart';
@@ -34,9 +35,11 @@ class BandsProvider extends StatefulWidget {
   BandsProvider({
     Key key,
     this.child,
+    this.firestore,
   }) : super(key: key);
 
   final Widget child;
+  final Firestore firestore;
 
   @override
   BandsProviderState createState() => BandsProviderState();

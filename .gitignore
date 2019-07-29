@@ -74,3 +74,4 @@ assets/bands.json
 key.properties
 key.jks
 android/app/google-services.json
+config.dart

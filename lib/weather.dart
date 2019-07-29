@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:dcache/dcache.dart';
 
 import 'openWeather.dart';
+import 'utils.dart';
 
 Cache c = SimpleCache<int, List<Weather>>(storage: SimpleStorage(size: 1));
 
 class WeatherWidget extends StatefulWidget {
-  final String datum;
   WeatherWidget(
-    this.datum, {
+    this.date, {
     Key key,
   }) : super(key: key);
+
+  final DateTime date;
 
   @override
   State<StatefulWidget> createState() => _WeatherWidgetState();
@@ -34,9 +36,9 @@ class _WeatherWidgetState extends State<WeatherWidget> {
     }
   }
 
-  Weather getWeatherForDate(List<Weather> weathers, String date) =>
+  Weather getWeatherForDate(List<Weather> weathers, DateTime date) =>
       weathers.firstWhere(
-        (current) => current.date.toIso8601String() == date,
+        (current) => isSameDay(current.date, date), // TODO(SF) korrekt?
         orElse: () => null,
       );
 
@@ -65,7 +67,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
         switch (list.connectionState) {
           case ConnectionState.done:
             if (list.hasError) return Text('Error: ${list.error}');
-            Weather weather = getWeatherForDate(list.data, widget.datum);
+            Weather weather = getWeatherForDate(list.data, widget.date);
             if (weather == null) {
               return _lastWeather ?? Container();
             }

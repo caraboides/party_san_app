@@ -6,9 +6,7 @@ const timeFormatString = 'HH:mm';
 const dateTimeFormatString = 'E HH:mm';
 
 class AppLocalizations {
-  final String dayOne;
-  final String dayTwo;
-  final String dayThree;
+  final String dayTitleFormat;
   final String bands;
   final String schedule;
   final String mySchedule;
@@ -30,9 +28,7 @@ class AppLocalizations {
   // final DateFormat dateTimeFormat;
 
   AppLocalizations({
-    this.dayOne,
-    this.dayTwo,
-    this.dayThree,
+    this.dayTitleFormat,
     this.bands,
     this.schedule,
     this.mySchedule,
@@ -64,6 +60,9 @@ class AppLocalizations {
           .replaceAll('{time}', timeFormat.format(time))
           .replaceAll('{stage}', stage);
 
+  String dayTitle(int number) =>
+      dayTitleFormat.replaceAll('{number}', number.toString());
+
   static const delegate = AppLocalizationsDelegate();
 
   static AppLocalizations of(BuildContext context) {
@@ -88,9 +87,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 }
 
 final de = AppLocalizations(
-  dayOne: 'Tag 1',
-  dayTwo: 'Tag 2',
-  dayThree: 'Tag 3',
+  dayTitleFormat: 'Tag {number}',
   bands: 'Bands',
   schedule: 'PLAN',
   mySchedule: 'MEIN >PLAN',
@@ -111,9 +108,7 @@ final de = AppLocalizations(
 );
 
 final en = AppLocalizations(
-  dayOne: 'Day 1',
-  dayTwo: 'Day 2',
-  dayThree: 'Day 3',
+  dayTitleFormat: 'Day {number}',
   bands: 'Bands',
   schedule: 'SCHEDULE',
   mySchedule: 'MY >SCHEDULE',
