@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ruhrpott_rodeo/i18n.dart';
+import 'i18n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'menu.dart';

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:ruhrpott_rodeo/i18n.dart';
+import 'i18n.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'menu.dart';
 import 'package:url_launcher/url_launcher.dart';

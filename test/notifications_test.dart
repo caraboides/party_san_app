@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:ruhrpott_rodeo/i18n.dart';
-import 'package:ruhrpott_rodeo/model.dart';
-import 'package:ruhrpott_rodeo/notifications.dart';
+import 'package:party_san/i18n.dart';
+import 'package:party_san/model.dart';
+import 'package:party_san/notifications.dart';
 
 main() {
   final i18n = en;

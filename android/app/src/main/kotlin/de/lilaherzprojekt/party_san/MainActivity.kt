@@ -1,4 +1,4 @@
-package foo.caraboides.ruhrpott_rodeo
+package de.lilaherzprojekt.party_san
 
 import android.os.Bundle
 
