@@ -214,7 +214,7 @@ class _EventDescription extends StatelessWidget {
       children: <Widget>[
         Text(
           bandname.toUpperCase(),
-          maxLines: 2,
+          maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
