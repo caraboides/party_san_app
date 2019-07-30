@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
 
+import 'festival_config.dart';
 import 'model.dart';
 import 'utils.dart';
 
@@ -26,10 +27,9 @@ class Schedule extends InheritedWidget {
   static ImmortalList<Event> allBandsOf(BuildContext context) =>
       of(context).sort((a, b) => a.bandName.compareTo(b.bandName));
 
-  static EventFilter dayOf(DateTime date) => (BuildContext context) =>
-      // TODO(SF) not correct add some hours in the early morning
-      of(context)
-          .where((item) => isSameDay(item.start, date))
+  static EventFilter dayOf(DateTime date) =>
+      (BuildContext context) => of(context)
+          .where((item) => isSameDay(item.start, date, offset: daySwitchOffset))
           .sort((a, b) => a.start.compareTo(b.start));
 
   @override

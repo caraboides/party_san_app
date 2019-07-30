@@ -10,6 +10,8 @@ ImmortalList<DateTime> get days => ImmortalList<DateTime>([
       DateTime(2019, 8, 10),
     ]);
 
+Duration daySwitchOffset = Duration(hours: 3);
+
 const String festivalName = 'Party.San';
 
 const String geoLocationQuery = 'lat=51.25&' + 'lon=10.67&';
