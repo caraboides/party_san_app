@@ -28,17 +28,23 @@ class Faq {
 }
 
 class BandData {
-  final String id;
   final String name;
   final String spotify;
   final String image;
+  final String logo;
+  final String origin;
+  final String style;
+  final String roots;
   final String text;
 
   BandData({
-    this.id,
     this.name,
     this.spotify,
     this.image,
+    this.logo,
+    this.origin,
+    this.style,
+    this.roots,
     this.text,
   });
 }

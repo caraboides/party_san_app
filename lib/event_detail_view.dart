@@ -17,7 +17,7 @@ class EventDetailView extends StatelessWidget {
     final myScheduleController = MyScheduleController.of(context);
     final i18n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final Optional<BandData> data = Bands.of(context, event.id);
+    final Optional<BandData> data = Bands.of(context, event.bandName);
     final isLiked = myScheduleController.mySchedule.isEventLiked(event.id);
     return Scaffold(
       appBar: AppBar(
@@ -77,15 +77,17 @@ class EventDetailView extends StatelessWidget {
               child: Text(data.map((a) => a.text).orElse(i18n.noInfo)),
             ),
             data
-                .map<Widget>((d) => RaisedButton(
-                      color: theme.accentColor,
-                      onPressed: () {
-                        launch(d.spotify);
-                      },
-                      child: Text(
-                        "Play on Spotify",
-                      ),
-                    ))
+                .map<Widget>((d) => d.spotify != null
+                    ? RaisedButton(
+                        color: theme.accentColor,
+                        onPressed: () {
+                          launch(d.spotify);
+                        },
+                        child: Text(
+                          "Play on Spotify",
+                        ),
+                      )
+                    : Container())
                 .orElse(Container()),
             //data.map((d) => Image.network(d.image)).orElse(Image.asset("")),
           ],

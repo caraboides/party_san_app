@@ -63,7 +63,8 @@ class ScheduleProviderState extends State<ScheduleProvider> {
         .collection('schedule');
     return scheduleRef.getDocuments().then((snapshot) {
       return parseEvents(snapshot.documents);
-      // TODO(SF) auch auf init zurückfallen, wenn liste leer
+      // TODO(SF) auch auf init json zurückfallen, wenn liste leer
+      // TODO(SF) reschedule notifications for updates
     }).catchError((error) {
       print(error);
       return DefaultAssetBundle.of(context)

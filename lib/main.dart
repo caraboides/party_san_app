@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
       firestore: firestore,
       child: MyScheduleProvider(
         child: BandsProvider(
+          firestore: firestore,
           child: MaterialApp(
             title: 'Ruhrpott Rodeo',
             theme: ThemeData(
