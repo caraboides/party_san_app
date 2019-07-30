@@ -9,7 +9,6 @@ List<DateTime> get days => <DateTime>[
       DateTime(2019, 8, 10),
     ];
 
-String get festivalName => 'Party.San';
+const String festivalName = 'Party.San';
 
-const String geoLocationQuery = 'lat=51.25&' +
-                                'lon=10.67&';
+const String geoLocationQuery = 'lat=51.25&' + 'lon=10.67&';

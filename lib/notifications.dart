@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import 'festival_config.dart';
 import 'i18n.dart';
 import 'model.dart';
 
@@ -13,7 +14,7 @@ final androidPlatformChannelSpecifics = AndroidNotificationDetails(
   'Notification to remind of scheduled gigs',
   importance: Importance.Max,
   priority: Priority.High,
-  color: Color(0xdc1f00),
+  color: Color(0x000000),
 );
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 int _nextNotificationId = 0;
@@ -52,7 +53,7 @@ Future<int> scheduleNotificationForEvent(
   final id = notificationId ?? _nextNotificationId++;
   await flutterLocalNotificationsPlugin.schedule(
     id,
-    'Ruhrpott Rodeo',
+    festivalName,
     i18n.eventNotification(event.bandName, event.start.toLocal(), event.stage),
     event.start.subtract(Duration(minutes: 10)),
     platformChannelSpecifics,

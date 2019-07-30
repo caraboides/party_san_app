@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:party_san/festival_config.dart';
 import 'package:party_san/i18n.dart';
 import 'package:party_san/model.dart';
 import 'package:party_san/notifications.dart';
@@ -57,7 +58,7 @@ main() {
       isMethodCall('cancel', arguments: 4),
       isMethodCall('schedule', arguments: {
         'id': 1,
-        'title': 'Ruhrpott Rodeo',
+        'title': festivalName,
         'body': i18n.eventNotification('Band 1', start1, 'Stage 1'),
         'millisecondsSinceEpoch':
             start1.subtract(minutes10).millisecondsSinceEpoch,
@@ -66,7 +67,7 @@ main() {
       }),
       isMethodCall('schedule', arguments: {
         'id': 2,
-        'title': 'Ruhrpott Rodeo',
+        'title': festivalName,
         'body': i18n.eventNotification('Band 2', start2, 'Stage 2'),
         'millisecondsSinceEpoch':
             start2.subtract(minutes10).millisecondsSinceEpoch,

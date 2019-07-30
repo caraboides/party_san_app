@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'about.dart';
 import 'band.dart';
 import 'faq.dart';
+import 'festival_config.dart';
 import 'home.dart';
 import 'i18n.dart';
 import 'important.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         child: BandsProvider(
           firestore: firestore,
           child: MaterialApp(
-            title: 'Ruhrpott Rodeo',
+            title: festivalName,
             theme: ThemeData(
               primaryColor: Color(0xFFDE0000),
               accentColor: Color(0xFFFFA419),
