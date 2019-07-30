@@ -134,7 +134,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         body: TabBarView(
           children: [
             _buildEventList(context),
-            ...days.map((date) => _buildEventList(context, date: date)),
+            ...days
+                .map((date) => _buildEventList(context, date: date))
+                .toMutableList(),
           ],
         ),
       ),

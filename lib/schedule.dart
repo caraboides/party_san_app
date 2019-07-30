@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:immortal/immortal.dart';
 
 import 'model.dart';
 import 'utils.dart';
 
-typedef EventFilter = List<Event> Function(BuildContext context);
+typedef EventFilter = ImmortalList<Event> Function(BuildContext context);
 
 class Schedule extends InheritedWidget {
   Schedule({
@@ -15,27 +16,21 @@ class Schedule extends InheritedWidget {
     this.events,
   }) : super(key: key, child: child);
 
-  final List<Event> events;
+  final ImmortalList<Event> events;
 
-  static List<T> sort<T>(Iterable<T> list, int compare(T a, T b)) {
-    List<T> willBeSorted = List.from(list);
-    willBeSorted.sort(compare);
-    return willBeSorted;
-  }
-
-  static List<Event> of(BuildContext context) {
+  static ImmortalList<Event> of(BuildContext context) {
     Schedule schedule = context.inheritFromWidgetOfExactType(Schedule);
     return schedule.events;
   }
 
-  static List<Event> allBandsOf(BuildContext context) {
-    return sort(of(context), (a, b) => a.bandName.compareTo(b.bandName));
-  }
+  static ImmortalList<Event> allBandsOf(BuildContext context) =>
+      of(context).sort((a, b) => a.bandName.compareTo(b.bandName));
 
-  static EventFilter dayOf(DateTime date) => (BuildContext context) => sort(
+  static EventFilter dayOf(DateTime date) => (BuildContext context) =>
       // TODO(SF) not correct add some hours in the early morning
-      of(context).where((item) => isSameDay(item.start, date)),
-      (a, b) => a.start.compareTo(b.start));
+      of(context)
+          .where((item) => isSameDay(item.start, date))
+          .sort((a, b) => a.start.compareTo(b.start));
 
   @override
   bool updateShouldNotify(Schedule oldWidget) => oldWidget.events != events;
@@ -56,7 +51,7 @@ class ScheduleProvider extends StatefulWidget {
 }
 
 class ScheduleProviderState extends State<ScheduleProvider> {
-  Future<List<Event>> loadInitialData() async {
+  Future<ImmortalList<Event>> loadInitialData() async {
     final scheduleRef = widget.firestore
         .collection('festivals')
         .document('party.san_2019')
@@ -84,8 +79,8 @@ class ScheduleProviderState extends State<ScheduleProvider> {
     );
   }
 
-  List<Event> parseEvents(List<DocumentSnapshot> snapshots) =>
-      snapshots.map(_buildEventFromSnapshot).toList();
+  ImmortalList<Event> parseEvents(List<DocumentSnapshot> snapshots) =>
+      ImmortalList(snapshots.map(_buildEventFromSnapshot));
 
   Event _buildEventFromJson(Map<String, dynamic> json) => Event(
         bandName: json['band'],
@@ -95,11 +90,11 @@ class ScheduleProviderState extends State<ScheduleProvider> {
         end: DateTime.parse(json['end']),
       );
 
-  List<Event> parseJsonEvents(List<dynamic> json) =>
-      json.map<Event>(_buildEventFromJson).toList();
+  ImmortalList<Event> parseJsonEvents(List<dynamic> json) =>
+      ImmortalList(json.map<Event>(_buildEventFromJson));
 
-  /// List of Items
-  List<Event> _events = <Event>[];
+  /// List of events
+  ImmortalList<Event> _events = ImmortalList<Event>.empty();
 
   @override
   void initState() {

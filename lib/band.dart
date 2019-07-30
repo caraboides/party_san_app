@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:immortal/immortal.dart';
 import 'package:optional/optional_internal.dart';
 import 'model.dart';
 
@@ -12,14 +13,14 @@ class Bands extends InheritedWidget {
     this.bands,
   }) : super(key: key, child: child);
 
-  final Map<String, BandData> bands;
+  final ImmortalMap<String, BandData> bands;
 
   @override
   bool updateShouldNotify(Bands oldWidget) => oldWidget.bands != bands;
 
   static Optional<BandData> of(BuildContext context, String id) {
     Bands data = context.inheritFromWidgetOfExactType(Bands);
-    return Optional.ofNullable(data.bands[id]);
+    return data.bands[id];
   }
 }
 
@@ -38,7 +39,7 @@ class BandsProvider extends StatefulWidget {
 }
 
 class BandsProviderState extends State<BandsProvider> {
-  Future<Map<String, BandData>> loadInitialData() async {
+  Future<ImmortalMap<String, BandData>> loadInitialData() async {
     final bandRef = widget.firestore
         .collection('festivals')
         .document('party.san_2019')
@@ -71,11 +72,11 @@ class BandsProviderState extends State<BandsProvider> {
     );
   }
 
-  Map<String, BandData> _parseBands(List<DocumentSnapshot> snapshots) =>
-      Map.fromEntries(snapshots.map(_parseBand));
+  ImmortalMap<String, BandData> _parseBands(List<DocumentSnapshot> snapshots) =>
+      ImmortalMap.fromEntriesIterable(snapshots.map(_parseBand));
 
-  Map<String, BandData> _parseJsonBands(Map<String, dynamic> jsonMap) =>
-      jsonMap.map<String, BandData>(_parseJsonBand);
+  ImmortalMap<String, BandData> _parseJsonBands(Map<String, dynamic> jsonMap) =>
+      ImmortalMap(jsonMap.map<String, BandData>(_parseJsonBand));
 
   MapEntry<String, BandData> _parseJsonBand(
           String bandName, Map<String, dynamic> data) =>
@@ -94,7 +95,7 @@ class BandsProviderState extends State<BandsProvider> {
       );
 
   /// Map of bands by name
-  Map<String, BandData> _bands = <String, BandData>{};
+  ImmortalMap<String, BandData> _bands = ImmortalMap<String, BandData>.empty();
 
   @override
   void initState() {

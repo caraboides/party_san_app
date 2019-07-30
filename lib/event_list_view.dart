@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:immortal/immortal.dart';
 
 import 'i18n.dart';
 import 'festival_config.dart';
@@ -48,7 +49,7 @@ class EventListViewState extends State<EventListView> {
     super.didUpdateWidget(oldWidget);
   }
 
-  Iterable<Event> getEvents(MyScheduleController myScheduleController) =>
+  ImmortalList<Event> getEvents(MyScheduleController myScheduleController) =>
       widget.eventFilter(context).where((event) =>
           !widget.favoritesOnly ||
           myScheduleController.mySchedule.isEventLiked(event.id));
@@ -58,10 +59,8 @@ class EventListViewState extends State<EventListView> {
     Future.delayed(timeout, () {
       if (mounted) {
         final now = DateTime.now();
-        final index = getEvents(MyScheduleController.of(context))
-            .toList()
-            .indexWhere((event) =>
-                !now.isBefore(event.start) && !now.isAfter(event.end));
+        final index = getEvents(MyScheduleController.of(context)).indexWhere(
+            (event) => !now.isBefore(event.start) && !now.isAfter(event.end));
         if (index >= 0) {
           _scrollController.animateTo(
             max(index - 2, 0) * _listItemHeight,
@@ -79,19 +78,17 @@ class EventListViewState extends State<EventListView> {
     final i18n = AppLocalizations.of(context);
     final now = DateTime.now();
     final events = getEvents(myScheduleController);
-    final items = events
-        .map((event) => CustomListItemTwo(
-              key: Key(event.id),
-              isLiked: myScheduleController.mySchedule.isEventLiked(event.id),
-              bandname: event.bandName,
-              start: event.start,
-              stage: event.stage,
-              toggleEvent: () => myScheduleController.toggleEvent(i18n, event),
-              bandView: widget.bandView,
-              openEventDetails: () => widget.openEventDetails(event),
-              isPlaying: !now.isBefore(event.start) && !now.isAfter(event.end),
-            ))
-        .toList();
+    final items = events.map((event) => CustomListItemTwo(
+          key: Key(event.id),
+          isLiked: myScheduleController.mySchedule.isEventLiked(event.id),
+          bandname: event.bandName,
+          start: event.start,
+          stage: event.stage,
+          toggleEvent: () => myScheduleController.toggleEvent(i18n, event),
+          bandView: widget.bandView,
+          openEventDetails: () => widget.openEventDetails(event),
+          isPlaying: !now.isBefore(event.start) && !now.isAfter(event.end),
+        ));
     if (widget.favoritesOnly && items.isEmpty) {
       return Expanded(
         child: Column(
@@ -118,7 +115,7 @@ class EventListViewState extends State<EventListView> {
         controller: _scrollController,
         children: ListTile.divideTiles(
           context: context,
-          tiles: items,
+          tiles: items.toMutableList(),
         ).toList(),
       ),
     );
