@@ -216,27 +216,19 @@ class _EventDescription extends StatelessWidget {
           bandname.toUpperCase(),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: FestivalTheme.eventBandTextStyle,
         ),
         const SizedBox(height: 4),
         Text(
           '${formatter.format(start.toLocal())}',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontSize: 12.0,
-            color: Colors.black54,
-          ),
+          style: FestivalTheme.eventDateTextStyle,
         ),
         const SizedBox(height: 2),
         Text(
           stage,
-          style: const TextStyle(
-            fontSize: 12.0,
-            color: Colors.black87,
-          ),
+          style: FestivalTheme.eventStageTextStyle,
         ),
       ],
     );

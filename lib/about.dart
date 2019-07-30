@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'i18n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'festival_config.dart';
+import 'i18n.dart';
 import 'menu.dart';
 
 class About extends StatelessWidget {
@@ -50,27 +51,34 @@ class About extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           i18n.about,
-          style: theme.textTheme.display1,
+          style: FestivalTheme.appBarTextStyle,
         ),
       ),
       body: ListView(
         padding: EdgeInsets.all(20),
         children: <Widget>[
-          Text('This is an unofficial app for the Ruhrpott Rodeo Festival:'),
+          Text('This is an unofficial app for the Party.San Open Air:'),
           Align(
             alignment: Alignment.center,
-            child: _buildLink(theme, 'https://www.ruhrpott-rodeo.de'),
+            child: _buildLink(theme, 'https://www.party-san.de'),
           ),
           Text('Source code can be found under'),
           Align(
             alignment: Alignment.center,
             child: _buildLink(
-                theme, 'https://github.com/caraboides/ruhrpott_rodeo'),
+                theme, 'https://github.com/caraboides/party_san_app'),
           ),
           Divider(),
           SizedBox(height: 5),
           Text(i18n.aboutCreated),
           SizedBox(height: 10),
+          _buildCreator(
+            'Stephanie Freitag',
+            <Widget>[
+              _buildLink(theme, 'https://github.com/strangeAeon', shrink: true),
+            ],
+            heartIcon: true,
+          ),
           _buildCreator(
             'Christian Hennig',
             <Widget>[
@@ -80,20 +88,12 @@ class About extends StatelessWidget {
             ],
             heartIcon: true,
           ),
-          _buildCreator(
-            'Stephanie Freitag',
-            <Widget>[
-              _buildLink(theme, 'https://github.com/strangeAeon', shrink: true),
-            ],
-            heartIcon: true,
-          ),
-          _buildCreator('Daniel Scheibe', <Widget>[]),
           Divider(),
           SizedBox(height: 5),
-          _buildCreator('Font "Beer Money" by:', <Widget>[
-            _buildLink(theme, 'http://www.rolandhuse.com', shrink: true),
+          _buildCreator('Font "Pirata One" by:', <Widget>[
+            _buildLink(theme, 'http://www.rfuenzalida.com/',
+                label: 'Rodrigo Fuenzalida', shrink: true),
           ]),
-          _buildCreator('Wikipedia', <Widget>[]),
           Divider(),
           SizedBox(height: 5),
           Text('Seenotrettung ist kein Verbrechen!'),
@@ -110,8 +110,8 @@ class About extends StatelessWidget {
             onPressed: () {
               showLicensePage(
                 context: context,
-                applicationName: 'RUHRPOTT RODEO APP',
-                applicationVersion: '1.0.0',
+                applicationName: '$festivalName App',
+                applicationVersion: '1.0.0', // TODO(SF) fill automatically?
                 applicationLegalese: i18n.aboutLicense,
               );
             },

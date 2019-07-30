@@ -11,7 +11,6 @@ class AppLocalizations {
   final String schedule;
   final String mySchedule;
   final String drive;
-  final String important;
   final String faq;
   final String addEventToSchedule;
   final String removeEventFromSchedule;
@@ -33,7 +32,6 @@ class AppLocalizations {
     this.schedule,
     this.mySchedule,
     this.drive,
-    this.important,
     this.faq,
     this.addEventToSchedule,
     this.removeEventFromSchedule,
@@ -89,17 +87,16 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 final de = AppLocalizations(
   dayTitleFormat: 'Tag {number}',
   bands: 'Bands',
-  schedule: 'PLAN',
-  mySchedule: 'MEIN >PLAN',
-  drive: 'ANFAHRT',
-  important: 'WICHTIG',
+  schedule: 'Plan',
+  mySchedule: 'Mein Plan',
+  drive: 'Bus Shuttle',
   faq: 'FAQ',
   addEventToSchedule: 'Füge Auftritt zum Plan hinzu',
   removeEventFromSchedule: 'Entferne Auftritt vom Plan',
   locale: 'de_DE',
-  eventDetailsHeader: 'BAND DETAILS',
+  eventDetailsHeader: 'Band Details',
   eventNotificationFormat: '{band} spielen um {time} auf der {stage}!',
-  about: 'ÜBER DIESE APP',
+  about: 'Über diese App',
   aboutLicense: 'Copyright 2019 Projekt LilaHerz 💜',
   aboutCreated: 'Entwickelt von Projekt LilaHerz',
   noInfo: 'Sorry, keine Infos',
@@ -110,17 +107,16 @@ final de = AppLocalizations(
 final en = AppLocalizations(
   dayTitleFormat: 'Day {number}',
   bands: 'Bands',
-  schedule: 'SCHEDULE',
-  mySchedule: 'MY >SCHEDULE',
-  drive: 'LOCATION',
-  important: 'IMPORTANT',
+  schedule: 'Schedule',
+  mySchedule: 'My Schedule',
+  drive: 'Bus Shuttle',
   faq: 'FAQ',
   addEventToSchedule: 'Add gig to schedule',
   removeEventFromSchedule: 'Remove gig from schedule',
   locale: 'en_US',
-  eventDetailsHeader: 'BAND DETAILS',
+  eventDetailsHeader: 'Band Details',
   eventNotificationFormat: '{band} plays at {time} on the {stage}!',
-  about: 'ABOUT',
+  about: 'About',
   aboutLicense: 'Copyright 2019 Projekt LilaHerz 💜',
   aboutCreated: 'Created by Projekt LilaHerz',
   noInfo: 'Sorry, no info',

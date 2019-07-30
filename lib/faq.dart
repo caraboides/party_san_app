@@ -1,13 +1,15 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+import 'festival_config.dart';
 import 'menu.dart';
 import 'model.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'menu.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-const String faq = '''<div class="row"><div class="col-xs-12 col-sm-12 col-md-4">
+const String faq =
+    '''<div class="row"><div class="col-xs-12 col-sm-12 col-md-4">
 <div id="c27" class="frame frame-default frame-type-text frame-layout-0"><header><h3 class="">
 				Festival
 			</h3></header><p>Das Party.San wird mit seiner 25. Auflage erneut auf dem Flugplatz Obermehler nahe der Stadt Schlotheim stattfinden. Da wir einen Flugplatz als Veranstaltungsareal nutzen, sind ein paar gesonderte Verhaltensregeln nötig, auf die wir noch genauer eingehen werden. Erneut werden wir&nbsp; die so genannte &nbsp;Underground - Bühne mit jeweils 5 Bands am Tag bespielen. Gesamt werden auf dem Party. San Open Air 2019 - 41 Bands auftreten. Wir hoffen natürlich, dass wir von Schäden, Unwettern &nbsp;und von Bandabsagen verschont bleiben. Das Party.San findet vom Donnerstag, 08.08.2019, bis Samstag, 10.08.2019, statt.</p></div>
@@ -88,27 +90,25 @@ class FAQ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final String contentBase64 =
-    base64Encode(const Utf8Encoder().convert(faq));
+    final String contentBase64 = base64Encode(const Utf8Encoder().convert(faq));
     String url = "data:text/html;base64,$contentBase64";
     return Scaffold(
       drawer: const Menu(),
       appBar: AppBar(
         title: Text(
           'FAQ',
-          style: theme.textTheme.display1,
+          style: FestivalTheme.appBarTextStyle,
         ),
       ),
-      body:Center(
+      body: Center(
           child: WebView(
-            initialUrl: url,
-            javascriptMode: JavascriptMode.unrestricted,
-            navigationDelegate: (NavigationRequest request) {
-              launch(request.url);
-              return NavigationDecision.prevent;
-            },
-          )),
+        initialUrl: url,
+        javascriptMode: JavascriptMode.unrestricted,
+        navigationDelegate: (NavigationRequest request) {
+          launch(request.url);
+          return NavigationDecision.prevent;
+        },
+      )),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:optional/optional_internal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'band.dart';
+import 'festival_config.dart';
 import 'i18n.dart';
 import 'model.dart';
 import 'my_schedule.dart';
@@ -23,7 +24,7 @@ class EventDetailView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           i18n.eventDetailsHeader,
-          style: theme.textTheme.display1,
+          style: FestivalTheme.appBarTextStyle,
         ),
       ),
       body: Container(
@@ -35,7 +36,7 @@ class EventDetailView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 event.bandName.toUpperCase(),
-                style: theme.textTheme.headline,
+                style: FestivalTheme.bandNameTextStyle,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -56,17 +57,11 @@ class EventDetailView extends StatelessWidget {
                     '${i18n.dateTimeFormat.format(event.start.toLocal())}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                      color: Colors.black54,
-                    ),
+                    style: FestivalTheme.eventDateTextStyle,
                   ),
                   Text(
                     event.stage,
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                      color: Colors.black87,
-                    ),
+                    style: FestivalTheme.eventStageTextStyle,
                   ),
                 ],
               ),

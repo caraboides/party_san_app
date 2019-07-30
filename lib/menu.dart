@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:party_san/festival_config.dart';
 
 import 'i18n.dart';
 
@@ -25,43 +26,68 @@ class Menu extends StatelessWidget {
     final theme = Theme.of(context);
     return Drawer(
       child: Container(
-        color: theme.accentColor,
+        color: FestivalTheme.menuBackgroundColor,
         child: ListView(
           children: <Widget>[
             ListTile(
-              title: Text(i18n.schedule, style: theme.textTheme.title),
-              leading: Icon(Icons.calendar_today, color: Colors.black87),
+              title: Text(
+                i18n.schedule,
+                style: FestivalTheme.menuEntryTextStyle,
+              ),
+              leading: Icon(
+                Icons.calendar_today,
+                color: FestivalTheme.menuIconColor,
+              ),
               onTap: () {
                 navigator.popUntil(_isHomeScreen);
                 navigator.pushReplacementNamed('home');
               },
             ),
             ListTile(
-              title: Text(i18n.mySchedule, style: theme.textTheme.title),
-              leading: Icon(Icons.star, color: Colors.black87),
+              title: Text(
+                i18n.mySchedule,
+                style: FestivalTheme.menuEntryTextStyle,
+              ),
+              leading: Icon(
+                Icons.star,
+                color: FestivalTheme.menuIconColor,
+              ),
               onTap: () {
                 navigator.popUntil(_isHomeScreen);
                 navigator.pushReplacementNamed('mySchedule');
               },
             ),
             ListTile(
-              title: Text(i18n.important, style: theme.textTheme.title),
-              leading: Icon(Icons.warning, color: Colors.black87),
-              onTap: () => _pushOnHome(navigator, 'important'),
-            ),
-            ListTile(
-              title: Text(i18n.drive, style: theme.textTheme.title),
-              leading: Icon(Icons.map, color: Colors.black87),
+              title: Text(
+                i18n.drive,
+                style: FestivalTheme.menuEntryTextStyle,
+              ),
+              leading: Icon(
+                Icons.map,
+                color: FestivalTheme.menuIconColor,
+              ),
               onTap: () => _pushOnHome(navigator, 'drive'),
             ),
             ListTile(
-              title: Text(i18n.faq, style: theme.textTheme.title),
-              leading: Icon(Icons.help, color: Colors.black87),
+              title: Text(
+                i18n.faq,
+                style: FestivalTheme.menuEntryTextStyle,
+              ),
+              leading: Icon(
+                Icons.help,
+                color: FestivalTheme.menuIconColor,
+              ),
               onTap: () => _pushOnHome(navigator, 'faq'),
             ),
             ListTile(
-              title: Text(i18n.about, style: theme.textTheme.title),
-              leading: Icon(Icons.info, color: Colors.black87),
+              title: Text(
+                i18n.about,
+                style: FestivalTheme.menuEntryTextStyle,
+              ),
+              leading: Icon(
+                Icons.info,
+                color: FestivalTheme.menuIconColor,
+              ),
               onTap: () => _pushOnHome(navigator, 'about'),
             ),
           ],

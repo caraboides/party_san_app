@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'i18n.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'menu.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+import 'festival_config.dart';
+import 'i18n.dart';
+import 'menu.dart';
 
 const String html = '''
 <style>
@@ -1134,7 +1136,7 @@ class Drive extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           i18n.drive,
-          style: Theme.of(context).textTheme.display1,
+          style: FestivalTheme.appBarTextStyle,
         ),
       ),
       body: Center(

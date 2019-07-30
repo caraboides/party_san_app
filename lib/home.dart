@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           ),
           title: Text(
             festivalName,
-            style: theme.textTheme.display1,
+            style: FestivalTheme.appBarTextStyle,
           ),
           actions: <Widget>[
             Icon(favoritesOnly ? Icons.star : Icons.star_border),

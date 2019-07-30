@@ -9,7 +9,6 @@ import 'faq.dart';
 import 'festival_config.dart';
 import 'home.dart';
 import 'i18n.dart';
-import 'important.dart';
 import 'init_firestore.dart';
 import 'initialization.dart';
 import 'drive.dart';
@@ -42,28 +41,7 @@ class MyApp extends StatelessWidget {
           firestore: firestore,
           child: MaterialApp(
             title: festivalName,
-            theme: ThemeData(
-              primaryColor: Color(0xFFDE0000),
-              accentColor: Color(0xFFFFA419),
-              //accentColor: Color(0xFFFB9802),
-              textTheme: Typography.blackMountainView.copyWith(
-                headline: TextStyle(
-                  fontFamily: 'Beer Money',
-                  fontSize: 28,
-                  color: Colors.black,
-                ),
-                display1: TextStyle(
-                  fontFamily: 'Beer Money',
-                  fontSize: 26,
-                  color: Colors.white,
-                ),
-                title: TextStyle(
-                  fontFamily: 'Beer Money',
-                  fontSize: 24,
-                  color: Colors.black,
-                ),
-              ),
-            ),
+            theme: FestivalTheme.theme,
             localizationsDelegates: [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -81,7 +59,6 @@ class MyApp extends StatelessWidget {
               'mySchedule': (context) => HomeScreen(favoritesOnly: true),
               'drive': (context) => Drive(),
               'faq': (context) => FAQ(),
-              'important': (context) => Important(),
               'about': (context) => About(),
             },
           ),
