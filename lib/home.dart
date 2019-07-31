@@ -105,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final i18n = AppLocalizations.of(context);
-    final theme = Theme.of(context);
     return DefaultTabController(
       length: 4,
       initialIndex: _initialTab,
@@ -116,13 +115,16 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             tabs: [
               Tab(text: i18n.bands),
               ...List.generate(
-                  days.length, (index) => Tab(text: i18n.dayTitle(index + 1))),
+                days.length,
+                (index) => Tab(text: i18n.dayTitle(index + 1)),
+              ),
             ],
           ),
-          title: Text(
+          title: Image.asset('assets/logo.png'),
+          /*Text(
             festivalName,
             style: FestivalTheme.appBarTextStyle,
-          ),
+          ),*/
           actions: <Widget>[
             Icon(favoritesOnly ? Icons.star : Icons.star_border),
             Switch(

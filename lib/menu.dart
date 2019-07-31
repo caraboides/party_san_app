@@ -29,6 +29,7 @@ class Menu extends StatelessWidget {
         color: FestivalTheme.menuBackgroundColor,
         child: ListView(
           children: <Widget>[
+            Image.asset('assets/logo_textured.png'),
             ListTile(
               title: Text(
                 i18n.schedule,
