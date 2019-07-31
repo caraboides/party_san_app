@@ -50,7 +50,6 @@ Future<Firestore> initFirestore() async {
 //     var counter = 0;
 //     print('0/${schedule.length}');
 //     schedule.forEach((event) async {
-//       event['updated'] = Timestamp.now();
 //       event['start'] = Timestamp.fromDate(DateTime.parse(event['start']));
 //       event['end'] = Timestamp.fromDate(DateTime.parse(event['end']));
 //       final docRef = await scheduleRef.add(event);

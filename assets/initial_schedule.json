@@ -1,308 +1,308 @@
-[
-  {
-    "band": "SLAEGT",
-    "start": "2019-08-08T14:30:00+0200",
-    "end": "2019-08-08T15:15:00+0200",
-    "stage": "Mainstage"
+{
+  "4ExqpyNsXjl2xZrN0uLv": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T21:10:00.000",
+    "end": "2019-08-10T22:00:00.000",
+    "band": "LEGION OF THE DAMNED"
   },
-  {
-    "band": "RUNEMAGICK",
-    "start": "2019-08-08T15:30:00+0200",
-    "end": "2019-08-08T16:15:00+0200",
-    "stage": "Mainstage"
+  "4fNtaa1duXlI01VDESoW": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T18:50:00.000",
+    "end": "2019-08-10T19:40:00.000",
+    "band": "DESTRUCTION"
   },
-  {
-    "band": "SKYFORGER",
-    "start": "2019-08-08T16:30:00+0200",
-    "end": "2019-08-08T17:15:00+0200",
-    "stage": "Mainstage"
+  "4fbpBkPMl31BPJzAfNqA": {
+    "stage": "Tentstage",
+    "start": "2019-08-10T17:25:00.000",
+    "end": "2019-08-10T17:50:00.000",
+    "band": "CARNAL TOMB"
   },
-  {
-    "band": "INCANTATION",
-    "start": "2019-08-08T17:30:00+0200",
-    "end": "2019-08-08T18:15:00+0200",
-    "stage": "Mainstage"
+  "8CQBYC6kIrPLyVOXFobt": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T15:45:00.000",
+    "end": "2019-08-09T16:30:00.000",
+    "band": "MIDNIGHT"
   },
-  {
-    "band": "SOILWORK",
-    "start": "2019-08-08T18:30:00+0200",
-    "end": "2019-08-08T19:15:00+0200",
-    "stage": "Mainstage"
+  "9Sb7taV1UK3fllMb8y1T": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T17:30:00.000",
+    "end": "2019-08-08T18:15:00.000",
+    "band": "INCANTATION"
   },
-  {
-    "band": "CRAFT",
-    "start": "2019-08-08T19:35:00+0200",
-    "end": "2019-08-08T20:20:00+0200",
-    "stage": "Mainstage"
+  "AImTppv5YypsfoIwhIXU": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T13:45:00.000",
+    "end": "2019-08-10T14:30:00.000",
+    "band": "JUNGLE ROT"
   },
-  {
-    "band": "ASCENSION",
-    "start": "2019-08-08T20:40:00+0200",
-    "end": "2019-08-08T21:25:00+0200",
-    "stage": "Mainstage"
+  "BALDCgJF5Zc41kQ2ac3i": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T12:00:00.000",
+    "end": "2019-08-10T12:30:00.000",
+    "band": "VULVODYNIA"
   },
-  {
-    "band": "BELPHEGOR",
-    "start": "2019-08-08T21:45:00+0200",
-    "end": "2019-08-08T22:30:00+0200",
-    "stage": "Mainstage"
+  "BfOfvR0hD62U79RxWHsE": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T12:45:00.000",
+    "end": "2019-08-10T13:30:00.000",
+    "band": "SVARTIDAUDI"
   },
-  {
-    "band": "HELLHAMMER played by TRIUMPH OF DEATH",
-    "start": "2019-08-08T22:50:00+0200",
-    "end": "2019-08-08T23:45:00+0200",
-    "stage": "Mainstage"
+  "Bt2fOCOdHd49goUvZoqK": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T21:45:00.000",
+    "end": "2019-08-08T22:30:00.000",
+    "band": "BELPHEGOR"
   },
-  {
-    "band": "HYPOCRISY",
-    "start": "2019-08-09T00:05:00+0200",
-    "end": "2019-08-09T01:20:00+0200",
-    "stage": "Mainstage"
+  "DlbWeV94lbaJK9JNemLt": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T22:20:00.000",
+    "end": "2019-08-10T23:30:00.000",
+    "band": "SOLSTAFIR"
   },
-  {
-    "band": "GUTALAX",
-    "start": "2019-08-09T12:00:00+0200",
-    "end": "2019-08-09T12:30:00+0200",
-    "stage": "Mainstage"
+  "G3k7yt1GgSS1s91UkZx0": {
+    "stage": "Tentstage",
+    "start": "2019-08-09T21:45:00.000",
+    "end": "2019-08-09T22:15:00.000",
+    "band": "THANATOS"
   },
-  {
-    "band": "DEFEATED SANITY",
-    "start": "2019-08-09T12:45:00+0200",
-    "end": "2019-08-09T13:30:00+0200",
-    "stage": "Mainstage"
+  "H3S3LwlsMgUZYGx0Twry": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T12:00:00.000",
+    "end": "2019-08-09T12:30:00.000",
+    "band": "GUTALAX"
   },
-  {
-    "band": "THE CROWN",
-    "start": "2019-08-09T13:45:00+0200",
-    "end": "2019-08-09T14:30:00+0200",
-    "stage": "Mainstage"
+  "P0XL96zFG5HvxEIKFBqA": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T18:30:00.000",
+    "end": "2019-08-08T19:15:00.000",
+    "band": "SOILWORK"
   },
-  {
-    "band": "SOLSTICE",
-    "start": "2019-08-09T14:45:00+0200",
-    "end": "2019-08-09T15:30:00+0200",
-    "stage": "Mainstage"
+  "PET8DOfZGVjOqaA2y626": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T18:50:00.000",
+    "end": "2019-08-09T19:35:00.000",
+    "band": "NIGHT DEMON"
   },
-  {
-    "band": "MIDNIGHT",
-    "start": "2019-08-09T15:45:00+0200",
-    "end": "2019-08-09T16:30:00+0200",
-    "stage": "Mainstage"
+  "PvgslqBd6Y9HA4963Isr": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T16:45:00.000",
+    "end": "2019-08-10T17:30:00.000",
+    "band": "SATAN"
   },
-  {
-    "band": "KRISIUN",
-    "start": "2019-08-09T16:45:00+0200",
-    "end": "2019-08-09T17:30:00+0200",
-    "stage": "Mainstage"
+  "Q1rQM1EP6bSBuz3pvC83": {
+    "stage": "Tentstage",
+    "start": "2019-08-10T11:00:00.000",
+    "end": "2019-08-10T12:00:00.000",
+    "band": "GOAT EXPLOSION"
   },
-  {
-    "band": "ARKONA",
-    "start": "2019-08-09T17:45:00+0200",
-    "end": "2019-08-09T18:30:00+0200",
-    "stage": "Mainstage"
+  "QlPnq8nvTe1YuaN5zVy8": {
+    "stage": "Tentstage",
+    "start": "2019-08-08T20:15:00.000",
+    "end": "2019-08-08T20:45:00.000",
+    "band": "NERVO CHAOS"
   },
-  {
-    "band": "NIGHT DEMON",
-    "start": "2019-08-09T18:50:00+0200",
-    "end": "2019-08-09T19:35:00+0200",
-    "stage": "Mainstage"
+  "Sy1AvLD3oPkv8Anzt40H": {
+    "stage": "Tentstage",
+    "start": "2019-08-10T10:00:00.000",
+    "end": "2019-08-10T10:45:00.000",
+    "band": "BLACK MOOD"
   },
-  {
-    "band": "ROTTING CHRIST",
-    "start": "2019-08-09T19:55:00+0200",
-    "end": "2019-08-09T20:40:00+0200",
-    "stage": "Mainstage"
+  "USBR8Kan6A8RCd6E6AJv": {
+    "stage": "Tentstage",
+    "start": "2019-08-10T20:45:00.000",
+    "end": "2019-08-10T21:15:00.000",
+    "band": "MALOKARPATAN"
   },
-  {
-    "band": "MGLA",
-    "start": "2019-08-09T21:00:00+0200",
-    "end": "2019-08-09T21:50:00+0200",
-    "stage": "Mainstage"
+  "VdZaB6qTJozBfy6RM5ps": {
+    "stage": "Tentstage",
+    "start": "2019-08-08T19:10:00.000",
+    "end": "2019-08-08T19:40:00.000",
+    "band": "TAPHOS"
   },
-  {
-    "band": "DEICIDE",
-    "start": "2019-08-09T22:10:00+0200",
-    "end": "2019-08-09T23:00:00+0200",
-    "stage": "Mainstage"
+  "WDxBjnfleqJJYNSvgHBy": {
+    "stage": "Tentstage",
+    "start": "2019-08-09T18:25:00.000",
+    "end": "2019-08-09T18:55:00.000",
+    "band": "NEKROVAULT"
   },
-  {
-    "band": "TESTAMENT",
-    "start": "2019-08-09T23:30:00+0200",
-    "end": "2019-08-10T00:45:00+0200",
-    "stage": "Mainstage"
+  "Wlce9Vzno0szMTywiOcj": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T17:45:00.000",
+    "end": "2019-08-09T18:30:00.000",
+    "band": "ARKONA"
   },
-  {
-    "band": "VULVODYNIA",
-    "start": "2019-08-10T12:00:00+0200",
-    "end": "2019-08-10T12:30:00+0200",
-    "stage": "Mainstage"
+  "ZEk6ATHGjUM58frnvBh5": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T15:45:00.000",
+    "end": "2019-08-10T16:30:00.000",
+    "band": "VOMITORY"
   },
-  {
-    "band": "SVARTIDAUDI",
-    "start": "2019-08-10T12:45:00+0200",
-    "end": "2019-08-10T13:30:00+0200",
-    "stage": "Mainstage"
+  "ZU4IE9A0HFcaP6kCSHk6": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T23:50:00.000",
+    "end": "2019-08-11T01:05:00.000",
+    "band": "BLOODBATH"
   },
-  {
-    "band": "JUNGLE ROT",
-    "start": "2019-08-10T13:45:00+0200",
-    "end": "2019-08-10T14:30:00+0200",
-    "stage": "Mainstage"
+  "bQ1iJEA3jIGQkQSrqhOW": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T14:45:00.000",
+    "end": "2019-08-10T15:30:00.000",
+    "band": "SUICIDAL ANGELS"
   },
-  {
-    "band": "SUICIDAL ANGELS",
-    "start": "2019-08-10T14:45:00+0200",
-    "end": "2019-08-10T15:30:00+0200",
-    "stage": "Mainstage"
+  "bbXXgJqF2JwmzedxCiZJ": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T20:40:00.000",
+    "end": "2019-08-08T21:25:00.000",
+    "band": "ASCENSION"
   },
-  {
-    "band": "VOMITORY",
-    "start": "2019-08-10T15:45:00+0200",
-    "end": "2019-08-10T16:30:00+0200",
-    "stage": "Mainstage"
+  "c3J4eDSXzhEf4xdz9FeR": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T14:30:00.000",
+    "end": "2019-08-08T15:15:00.000",
+    "band": "SLAEGT"
   },
-  {
-    "band": "SATAN",
-    "start": "2019-08-10T16:45:00+0200",
-    "end": "2019-08-10T17:30:00+0200",
-    "stage": "Mainstage"
+  "dc6PN7wEpxeDy06WAxdC": {
+    "stage": "Tentstage",
+    "start": "2019-08-10T21:55:00.000",
+    "end": "2019-08-10T22:25:00.000",
+    "band": "DEATHRITE"
   },
-  {
-    "band": "IMMOLATION",
-    "start": "2019-08-10T17:45:00+0200",
-    "end": "2019-08-10T18:30:00+0200",
-    "stage": "Mainstage"
+  "e3l1OXCuYJmrhpvi0yl6": {
+    "stage": "Tentstage",
+    "start": "2019-08-09T19:30:00.000",
+    "end": "2019-08-09T20:00:00.000",
+    "band": "STILLBIRTH"
   },
-  {
-    "band": "DESTRUCTION",
-    "start": "2019-08-10T18:50:00+0200",
-    "end": "2019-08-10T19:40:00+0200",
-    "stage": "Mainstage"
+  "e3lPPl78pmJJ4S9IKiOn": {
+    "stage": "Tentstage",
+    "start": "2019-08-08T17:10:00.000",
+    "end": "2019-08-08T17:35:00.000",
+    "band": "BALMOG"
   },
-  {
-    "band": "NAGLFAR",
-    "start": "2019-08-10T20:00:00+0200",
-    "end": "2019-08-10T20:50:00+0200",
-    "stage": "Mainstage"
+  "hKIKiEma2cBpNMiugK70": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T19:55:00.000",
+    "end": "2019-08-09T20:40:00.000",
+    "band": "ROTTING CHRIST"
   },
-  {
-    "band": "LEGION OF THE DAMNED",
-    "start": "2019-08-10T21:10:00+0200",
-    "end": "2019-08-10T22:00:00+0200",
-    "stage": "Mainstage"
+  "hKRXdxQnoNdAMwv4UphT": {
+    "stage": "Tentstage",
+    "start": "2019-08-09T20:35:00.000",
+    "end": "2019-08-09T21:05:00.000",
+    "band": "FIRTAN"
   },
-  {
-    "band": "SOLSTAFIR",
-    "start": "2019-08-10T22:20:00+0200",
-    "end": "2019-08-10T23:30:00+0200",
-    "stage": "Mainstage"
+  "i7w4w4kNI6Qk8mkiDT68": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T15:30:00.000",
+    "end": "2019-08-08T16:15:00.000",
+    "band": "RUNEMAGICK"
   },
-  {
-    "band": "BLOODBATH",
-    "start": "2019-08-10T23:50:00+0200",
-    "end": "2019-08-11T01:05:00+0200",
-    "stage": "Mainstage"
+  "iEsZC6ZE8H1rwyxpO9vM": {
+    "stage": "Tentstage",
+    "start": "2019-08-10T18:25:00.000",
+    "end": "2019-08-10T18:55:00.000",
+    "band": "DAMNATION DEFACED"
   },
-  {
-    "band": "BALMOG",
-    "start": "2019-08-08T17:10:00+0200",
-    "end": "2019-08-08T17:35:00+0200",
-    "stage": "Tentstage"
+  "jutoZgYyciDl6niFa4KG": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T16:30:00.000",
+    "end": "2019-08-08T17:15:00.000",
+    "band": "SKYFORGER"
   },
-  {
-    "band": "DEVANGELIC",
-    "start": "2019-08-08T18:10:00+0200",
-    "end": "2019-08-08T18:35:00+0200",
-    "stage": "Tentstage"
+  "kiBiggsbRNCwDf01vvyp": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T17:45:00.000",
+    "end": "2019-08-10T18:30:00.000",
+    "band": "IMMOLATION"
   },
-  {
-    "band": "TAPHOS",
-    "start": "2019-08-08T19:10:00+0200",
-    "end": "2019-08-08T19:40:00+0200",
-    "stage": "Tentstage"
+  "n6TqC71xqy40rdb2pIql": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T12:45:00.000",
+    "end": "2019-08-09T13:30:00.000",
+    "band": "DEFEATED SANITY"
   },
-  {
-    "band": "NERVO CHAOS",
-    "start": "2019-08-08T20:15:00+0200",
-    "end": "2019-08-08T20:45:00+0200",
-    "stage": "Tentstage"
+  "nkUIMi67dqFp8NxLQjHR": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T13:45:00.000",
+    "end": "2019-08-09T14:30:00.000",
+    "band": "THE CROWN"
   },
-  {
-    "band": "BEHEADED",
-    "start": "2019-08-08T21:20:00+0200",
-    "end": "2019-08-08T21:50:00+0200",
-    "stage": "Tentstage"
+  "oGQxGUhOZsVJCyHHIUGt": {
+    "stage": "Tentstage",
+    "start": "2019-08-09T17:25:00.000",
+    "end": "2019-08-09T17:50:00.000",
+    "band": "TRAITOR"
   },
-  {
-    "band": "TRAITOR",
-    "start": "2019-08-09T17:25:00+0200",
-    "end": "2019-08-09T17:50:00+0200",
-    "stage": "Tentstage"
+  "onSqM9yH86JYAl37tpzW": {
+    "stage": "Tentstage",
+    "start": "2019-08-08T21:20:00.000",
+    "end": "2019-08-08T21:50:00.000",
+    "band": "BEHEADED"
   },
-  {
-    "band": "NEKROVAULT",
-    "start": "2019-08-09T18:25:00+0200",
-    "end": "2019-08-09T18:55:00+0200",
-    "stage": "Tentstage"
+  "pwt64nL9mLlRGDQhtx7J": {
+    "stage": "Mainstage",
+    "start": "2019-08-10T20:00:00.000",
+    "end": "2019-08-10T20:50:00.000",
+    "band": "NAGLFAR"
   },
-  {
-    "band": "STILLBIRTH",
-    "start": "2019-08-09T19:30:00+0200",
-    "end": "2019-08-09T20:00:00+0200",
-    "stage": "Tentstage"
+  "qeE62FCqy3vPVVqUgDkW": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T21:00:00.000",
+    "end": "2019-08-09T21:50:00.000",
+    "band": "MGLA"
   },
-  {
-    "band": "FIRTAN",
-    "start": "2019-08-09T20:35:00+0200",
-    "end": "2019-08-09T21:05:00+0200",
-    "stage": "Tentstage"
+  "qq6WflL7TCcUZDLNFQSe": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T23:30:00.000",
+    "end": "2019-08-10T00:45:00.000",
+    "band": "TESTAMENT"
   },
-  {
-    "band": "THANATOS",
-    "start": "2019-08-09T21:45:00+0200",
-    "end": "2019-08-09T22:15:00+0200",
-    "stage": "Tentstage"
+  "rv72c5fMP5kf1tZE8lam": {
+    "stage": "Tentstage",
+    "start": "2019-08-08T18:10:00.000",
+    "end": "2019-08-08T18:35:00.000",
+    "band": "DEVANGELIC"
   },
-  {
-    "band": "BLACK MOOD",
-    "start": "2019-08-10T10:00:00+0200",
-    "end": "2019-08-10T10:45:00+0200",
-    "stage": "Tentstage"
+  "tU4LrdZrxgMoY6YbWaSp": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T22:50:00.000",
+    "end": "2019-08-08T23:45:00.000",
+    "band": "HELLHAMMER played by TRIUMPH OF DEATH"
   },
-  {
-    "band": "GOAT EXPLOSION",
-    "start": "2019-08-10T11:00:00+0200",
-    "end": "2019-08-10T12:00:00+0200",
-    "stage": "Tentstage"
+  "tYWrXkNZYXxitxu1D5cE": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T00:05:00.000",
+    "end": "2019-08-09T01:20:00.000",
+    "band": "HYPOCRISY"
   },
-  {
-    "band": "CARNAL TOMB",
-    "start": "2019-08-10T17:25:00+0200",
-    "end": "2019-08-10T17:50:00+0200",
-    "stage": "Tentstage"
+  "yDG8sByFZB4gZIAkujH1": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T14:45:00.000",
+    "end": "2019-08-09T15:30:00.000",
+    "band": "SOLSTICE"
   },
-  {
-    "band": "DAMNATION DEFACED",
-    "start": "2019-08-10T18:25:00+0200",
-    "end": "2019-08-10T18:55:00+0200",
-    "stage": "Tentstage"
+  "yjbRJgqmimhDHCUBrAif": {
+    "stage": "Mainstage",
+    "start": "2019-08-08T19:35:00.000",
+    "end": "2019-08-08T20:20:00.000",
+    "band": "CRAFT"
   },
-  {
-    "band": "UNDERGANG",
-    "start": "2019-08-10T19:35:00+0200",
-    "end": "2019-08-10T20:05:00+0200",
-    "stage": "Tentstage"
+  "ym8J3Gp2L898cYoCP87g": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T16:45:00.000",
+    "end": "2019-08-09T17:30:00.000",
+    "band": "KRISIUN"
   },
-  {
-    "band": "MALOKARPATAN",
-    "start": "2019-08-10T20:45:00+0200",
-    "end": "2019-08-10T21:15:00+0200",
-    "stage": "Tentstage"
+  "z8sZnZI8L2BXHfmNY04j": {
+    "stage": "Mainstage",
+    "start": "2019-08-09T22:10:00.000",
+    "end": "2019-08-09T23:00:00.000",
+    "band": "DEICIDE"
   },
-  {
-    "band": "DEATHRITE",
-    "start": "2019-08-10T21:55:00+0200",
-    "end": "2019-08-10T22:25:00+0200",
-    "stage": "Tentstage"
+  "zJsxQOsMmQOfv7cHQai6": {
+    "stage": "Tentstage",
+    "start": "2019-08-10T19:35:00.000",
+    "end": "2019-08-10T20:05:00.000",
+    "band": "UNDERGANG"
   }
-]
+}

@@ -31,7 +31,6 @@ flutter:
 
   assets:
      - assets/initial_schedule.json
-     - assets/initialFaq.json
      - assets/bands.json
 
   fonts:

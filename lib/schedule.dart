@@ -51,22 +51,26 @@ class ScheduleProvider extends StatefulWidget {
 }
 
 class ScheduleProviderState extends State<ScheduleProvider> {
-  Future<ImmortalList<Event>> loadInitialData() async {
+  Future<ImmortalList<Event>> _loadInitialData() async {
     final scheduleRef = widget.firestore
         .collection('festivals')
         .document('party.san_2019')
         .collection('schedule');
-    return scheduleRef.getDocuments().then((snapshot) {
-      return parseEvents(snapshot.documents);
-      // TODO(SF) auch auf init json zurückfallen, wenn liste leer
+    return scheduleRef.getDocuments().then<ImmortalList<Event>>((snapshot) {
+      return snapshot.documents.isEmpty
+          ? _loadFallbackData()
+          : parseEvents(snapshot.documents);
       // TODO(SF) reschedule notifications for updates
     }).catchError((error) {
       print(error);
-      return DefaultAssetBundle.of(context)
-          .loadString("assets/initial_schedule.json")
-          .then((v) => parseJsonEvents(jsonDecode(v)));
+      return _loadFallbackData();
     });
   }
+
+  Future<ImmortalList<Event>> _loadFallbackData() =>
+      DefaultAssetBundle.of(context)
+          .loadString("assets/initial_schedule.json")
+          .then<ImmortalList<Event>>((v) => _parseJsonEvents(jsonDecode(v)));
 
   Event _buildEventFromSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data;
@@ -82,16 +86,16 @@ class ScheduleProviderState extends State<ScheduleProvider> {
   ImmortalList<Event> parseEvents(List<DocumentSnapshot> snapshots) =>
       ImmortalList(snapshots.map(_buildEventFromSnapshot));
 
-  Event _buildEventFromJson(Map<String, dynamic> json) => Event(
-        bandName: json['band'],
-        id: json['id'], // TODO(SF) nicht enthalten!
-        stage: json['stage'],
-        start: DateTime.parse(json['start']), // TODO(SF) korrekt?
-        end: DateTime.parse(json['end']),
-      );
+  ImmortalList<Event> _parseJsonEvents(Map<String, dynamic> jsonMap) =>
+      ImmortalMap<String, dynamic>(jsonMap).mapEntries<Event>(_parseJsonEvent);
 
-  ImmortalList<Event> parseJsonEvents(List<dynamic> json) =>
-      ImmortalList(json.map<Event>(_buildEventFromJson));
+  Event _parseJsonEvent(String id, dynamic data) => Event(
+        bandName: data['band'],
+        id: id,
+        stage: data['stage'],
+        start: DateTime.parse(data['start']),
+        end: DateTime.parse(data['end']),
+      );
 
   /// List of events
   ImmortalList<Event> _events = ImmortalList<Event>.empty();
@@ -99,7 +103,7 @@ class ScheduleProviderState extends State<ScheduleProvider> {
   @override
   void initState() {
     super.initState();
-    loadInitialData().then((newEvents) {
+    _loadInitialData().then((newEvents) {
       setState(() {
         _events = newEvents;
       });

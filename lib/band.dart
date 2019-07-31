@@ -39,21 +39,28 @@ class BandsProvider extends StatefulWidget {
 }
 
 class BandsProviderState extends State<BandsProvider> {
-  Future<ImmortalMap<String, BandData>> loadInitialData() async {
+  Future<ImmortalMap<String, BandData>> _loadInitialData() async {
     final bandRef = widget.firestore
         .collection('festivals')
         .document('party.san_2019')
         .collection('bands');
-    return bandRef.getDocuments().then((snapshot) {
-      return _parseBands(snapshot.documents);
-      // TODO(SF) auch auf init json zurückfallen, wenn liste leer
-    }).catchError((error) {
+    return bandRef
+        .getDocuments()
+        .then<ImmortalMap<String, BandData>>((snapshot) =>
+            snapshot.documents.isEmpty
+                ? _loadFallbackData()
+                : _parseBands(snapshot.documents))
+        .catchError((error) {
       print(error);
-      return DefaultAssetBundle.of(context)
-          .loadString("assets/bands.json")
-          .then((v) => _parseJsonBands(jsonDecode(v)));
+      return _loadFallbackData();
     });
   }
+
+  Future<ImmortalMap<String, BandData>> _loadFallbackData() =>
+      DefaultAssetBundle.of(context)
+          .loadString("assets/bands.json")
+          .then<ImmortalMap<String, BandData>>(
+              (v) => _parseJsonBands(jsonDecode(v)));
 
   MapEntry<String, BandData> _parseBand(DocumentSnapshot snapshot) {
     final data = snapshot.data;
@@ -75,11 +82,11 @@ class BandsProviderState extends State<BandsProvider> {
   ImmortalMap<String, BandData> _parseBands(List<DocumentSnapshot> snapshots) =>
       ImmortalMap.fromEntriesIterable(snapshots.map(_parseBand));
 
-  ImmortalMap<String, BandData> _parseJsonBands(Map<String, dynamic> jsonMap) =>
-      ImmortalMap(jsonMap.map<String, BandData>(_parseJsonBand));
+  ImmortalMap<String, BandData> _parseJsonBands(dynamic jsonMap) =>
+      ImmortalMap<String, BandData>(
+          jsonMap.map<String, BandData>(_parseJsonBand));
 
-  MapEntry<String, BandData> _parseJsonBand(
-          String bandName, Map<String, dynamic> data) =>
+  MapEntry<String, BandData> _parseJsonBand(String bandName, dynamic data) =>
       MapEntry(
         bandName,
         BandData(
@@ -100,7 +107,7 @@ class BandsProviderState extends State<BandsProvider> {
   @override
   void initState() {
     super.initState();
-    loadInitialData().then((bands) {
+    _loadInitialData().then((bands) {
       setState(() {
         _bands = bands;
       });
