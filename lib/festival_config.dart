@@ -44,6 +44,9 @@ class FestivalTheme {
 
   static final TextStyle appBarTextStyle = theme.textTheme.display1;
   static final TextStyle bandNameTextStyle = theme.textTheme.headline;
+  static final TextStyle bandDetailTextStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+  );
   static const TextStyle eventBandTextStyle = TextStyle(
     fontWeight: FontWeight.bold,
   );

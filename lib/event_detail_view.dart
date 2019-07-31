@@ -13,6 +13,81 @@ class EventDetailView extends StatelessWidget {
 
   final Event event;
 
+  String _buildFlag(String country) =>
+      String.fromCharCodes(country.runes.map((code) => code + 127397));
+
+  List<Widget> _buildDetails(
+          ThemeData theme, AppLocalizations i18n, BandData data) =>
+      <Widget>[
+        Padding(
+          padding:
+              const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 15),
+          child: Text(data.text),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: 75,
+                child: Text(
+                  '${i18n.origin}:',
+                  style: FestivalTheme.bandDetailTextStyle,
+                ),
+              ),
+              Text(_buildFlag(data.origin)),
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: 75,
+                child: Text(
+                  '${i18n.style}:',
+                  style: FestivalTheme.bandDetailTextStyle,
+                ),
+              ),
+              Text(data.style),
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: 75,
+                child: Text(
+                  '${i18n.roots}:',
+                  style: FestivalTheme.bandDetailTextStyle,
+                ),
+              ),
+              Text(data.roots),
+            ],
+          ),
+        ),
+        if (data.spotify != null)
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+            child: RaisedButton(
+              color: theme.accentColor,
+              onPressed: () {
+                launch(data.spotify);
+              },
+              child: Text(
+                "Play on Spotify",
+              ),
+            ),
+          ),
+        // Padding(
+        //   padding: EdgeInsets.only(top: 15),
+        //   child: Image.network(data.image),
+        // ),
+      ];
+
   @override
   Widget build(BuildContext context) {
     final myScheduleController = MyScheduleController.of(context);
@@ -29,11 +104,11 @@ class EventDetailView extends StatelessWidget {
       ),
       body: Container(
         alignment: Alignment.topCenter,
-        padding: EdgeInsets.only(top: 20),
-        child: Column(
+        child: ListView(
           children: <Widget>[
+            // data.map<Widget>((d) => Image.network(d.logo)).orElse(Container()),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.only(left: 20, right: 20, top: 20),
               child: Text(
                 event.bandName.toUpperCase(),
                 style: FestivalTheme.bandNameTextStyle,
@@ -53,11 +128,14 @@ class EventDetailView extends StatelessWidget {
                     onPressed: () =>
                         myScheduleController.toggleEvent(i18n, event),
                   ),
-                  Text(
-                    '${i18n.dateTimeFormat.format(event.start.toLocal())}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: FestivalTheme.eventDateTextStyle,
+                  Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Text(
+                      '${i18n.dateTimeFormat.format(event.start.toLocal())}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: FestivalTheme.eventDateTextStyle,
+                    ),
                   ),
                   Text(
                     event.stage,
@@ -66,25 +144,16 @@ class EventDetailView extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 10, left: 20, right: 20, bottom: 20),
-              child: Text(data.map((a) => a.text).orElse(i18n.noInfo)),
-            ),
-            data
-                .map<Widget>((d) => d.spotify != null
-                    ? RaisedButton(
-                        color: theme.accentColor,
-                        onPressed: () {
-                          launch(d.spotify);
-                        },
-                        child: Text(
-                          "Play on Spotify",
-                        ),
-                      )
-                    : Container())
-                .orElse(Container()),
-            //data.map((d) => Image.network(d.image)).orElse(Image.asset("")),
+            ...data
+                .map<List<Widget>>((d) => _buildDetails(theme, i18n, d))
+                .orElse(<Widget>[
+              Container(
+                padding: const EdgeInsets.only(
+                    top: 10, left: 20, right: 20, bottom: 20),
+                alignment: Alignment.center,
+                child: Text(i18n.noInfo),
+              ),
+            ]),
           ],
         ),
       ),

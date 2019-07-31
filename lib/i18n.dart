@@ -23,6 +23,10 @@ class AppLocalizations {
   final String noInfo;
   final String emptyScheduleHeadline;
   final String emptySchedule;
+  final String origin;
+  final String roots;
+  final String style;
+
   // final DateFormat timeFormat;
   // final DateFormat dateTimeFormat;
 
@@ -44,6 +48,9 @@ class AppLocalizations {
     this.noInfo,
     this.emptyScheduleHeadline,
     this.emptySchedule,
+    this.origin,
+    this.roots,
+    this.style,
   }) /*: TODO(SF) why does this not work?
         this.timeFormat = DateFormat(timeFormatString, locale),
         this.dateTimeFormat = DateFormat(dateTimeFormatString, locale)*/
@@ -102,6 +109,9 @@ final de = AppLocalizations(
   noInfo: 'Sorry, keine Infos',
   emptyScheduleHeadline: 'Magst du keine Musik?',
   emptySchedule: 'Du hast noch keine Auftritte zu deinem Plan hinzugefügt!',
+  origin: 'Herkunft',
+  roots: 'Wurzeln',
+  style: 'Stil',
 );
 
 final en = AppLocalizations(
@@ -122,4 +132,7 @@ final en = AppLocalizations(
   noInfo: 'Sorry, no info',
   emptyScheduleHeadline: "Don't you like music?",
   emptySchedule: 'You did not add any gigs to your schedule yet!',
+  origin: 'Origin',
+  roots: 'Roots',
+  style: 'Style',
 );
