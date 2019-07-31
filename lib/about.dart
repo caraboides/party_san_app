@@ -27,7 +27,7 @@ class About extends StatelessWidget {
         children: <Widget>[
           Icon(
             heartIcon ? Icons.favorite : Icons.stars,
-            color: heartIcon ? Colors.purple : Colors.black87,
+            color: heartIcon ? Colors.purple : Colors.white70,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,77 +46,85 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     final i18n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    return Scaffold(
-      drawer: const Menu(),
-      appBar: AppBar(
-        title: Text(
-          i18n.about,
-          style: FestivalTheme.appBarTextStyle,
-        ),
+    return Theme(
+      data: theme.copyWith(
+        textTheme: Typography.whiteMountainView,
       ),
-      body: ListView(
-        padding: EdgeInsets.all(20),
-        children: <Widget>[
-          Text('This is an unofficial app for the Party.San Open Air:'),
-          Align(
-            alignment: Alignment.center,
-            child: _buildLink(theme, 'https://www.party-san.de'),
+      child: Scaffold(
+        drawer: const Menu(),
+        appBar: AppBar(
+          title: Text(
+            i18n.about,
+            style: FestivalTheme.appBarTextStyle,
           ),
-          Text('Source code can be found under'),
-          Align(
-            alignment: Alignment.center,
-            child: _buildLink(
-                theme, 'https://github.com/caraboides/party_san_app'),
-          ),
-          Divider(),
-          SizedBox(height: 5),
-          Text(i18n.aboutCreated),
-          SizedBox(height: 10),
-          _buildCreator(
-            'Stephanie Freitag',
-            <Widget>[
-              _buildLink(theme, 'https://github.com/strangeAeon', shrink: true),
-            ],
-            heartIcon: true,
-          ),
-          _buildCreator(
-            'Christian Hennig',
-            <Widget>[
-              _buildLink(theme, 'https://github.com/caraboides', shrink: true),
-              _buildLink(theme, 'https://twitter.com/carabiodes',
-                  label: '@carabiodes', shrink: true),
-            ],
-            heartIcon: true,
-          ),
-          Divider(),
-          SizedBox(height: 5),
-          _buildCreator('Font "Pirata One" by:', <Widget>[
-            _buildLink(theme, 'http://www.rfuenzalida.com/',
-                label: 'Rodrigo Fuenzalida', shrink: true),
-          ]),
-          Divider(),
-          SizedBox(height: 5),
-          Text('Seenotrettung ist kein Verbrechen!'),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _buildLink(theme, 'https://sea-watch.org/'),
-            ],
-          ),
-          RaisedButton(
-            color: theme.accentColor,
-            child:
-                Text(MaterialLocalizations.of(context).viewLicensesButtonLabel),
-            onPressed: () {
-              showLicensePage(
-                context: context,
-                applicationName: '$festivalName App',
-                applicationVersion: '1.0.0', // TODO(SF) fill automatically?
-                applicationLegalese: i18n.aboutLicense,
-              );
-            },
-          ),
-        ],
+        ),
+        backgroundColor: theme.primaryColor,
+        body: ListView(
+          padding: EdgeInsets.all(20),
+          children: <Widget>[
+            Text('This is an unofficial app for the Party.San Open Air:'),
+            Align(
+              alignment: Alignment.center,
+              child: _buildLink(theme, 'https://www.party-san.de'),
+            ),
+            Text('Source code can be found under'),
+            Align(
+              alignment: Alignment.center,
+              child: _buildLink(
+                  theme, 'https://github.com/caraboides/party_san_app'),
+            ),
+            Divider(),
+            SizedBox(height: 5),
+            Text(i18n.aboutCreated),
+            SizedBox(height: 10),
+            _buildCreator(
+              'Stephanie Freitag',
+              <Widget>[
+                _buildLink(theme, 'https://github.com/strangeAeon',
+                    shrink: true),
+              ],
+              heartIcon: true,
+            ),
+            _buildCreator(
+              'Christian Hennig',
+              <Widget>[
+                _buildLink(theme, 'https://github.com/caraboides',
+                    shrink: true),
+                _buildLink(theme, 'https://twitter.com/carabiodes',
+                    label: '@carabiodes', shrink: true),
+              ],
+              heartIcon: true,
+            ),
+            Divider(),
+            SizedBox(height: 5),
+            _buildCreator('Font "Pirata One" by:', <Widget>[
+              _buildLink(theme, 'http://www.rfuenzalida.com/',
+                  label: 'Rodrigo Fuenzalida', shrink: true),
+            ]),
+            Divider(),
+            SizedBox(height: 5),
+            Text('Seenotrettung ist kein Verbrechen!'),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildLink(theme, 'https://sea-watch.org/'),
+              ],
+            ),
+            RaisedButton(
+              color: theme.accentColor,
+              child: Text(
+                  MaterialLocalizations.of(context).viewLicensesButtonLabel),
+              onPressed: () {
+                showLicensePage(
+                  context: context,
+                  applicationName: '$festivalName App',
+                  applicationVersion: '1.0.0', // TODO(SF) fill automatically?
+                  applicationLegalese: i18n.aboutLicense,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
