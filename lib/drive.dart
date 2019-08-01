@@ -9,40 +9,41 @@ import 'i18n.dart';
 import 'menu.dart';
 
 const String html = '''
-    <link href="https://fonts.googleapis.com/css?family=Pirata+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Pirata+One&display=swap" rel="stylesheet">
 
 <style>
 td,th {
-text-align: center;
+  text-align: center;
 } 
 table {
-    border:none;
-    border-collapse: collapse;
-    width: 100%;
+  border:none;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 table td {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
 table td:first-child {
-    border-left: none;
+  border-left: none;
+  // background-color: #ffffff;
 }
-
 table td:last-child {
-    border-right: none;
+  border-right: none;
+  background-color: #ffffff;
 }
-table { border: none; border-collapse: collapse; }
-table td { border-left: 1px solid #000; }
-table td:first-child { border-left: none; }
-    h2 {
-    font-family: 'Pirata One', cursive;
-    font-size: 27px;
-    }
-    body {
-      margin: 20px;
-    }
+table tr:nth-of-type(even) {
+  background-color: #eeeeee;
+}
+h2 {
+  font-family: 'Pirata One';
+  font-size: 27px;
+}
+body {
+  margin: 20px;
+}
 
 </style>
    <header>
@@ -69,7 +70,7 @@ table td:first-child { border-left: none; }
                Sa 10.8.
             </td>
             <td>
-               S0 11.8.
+               So 11.8.
             </td>
             <td>
                &nbsp;
@@ -926,10 +927,16 @@ table td:first-child { border-left: none; }
             <td>
                Sa 10.8.
             </td>
+            <td>
+               &nbsp;
+            </td>
          </tr>
          <tr>
             <td>
                Uhr
+            </td>
+            <td>
+               &nbsp;
             </td>
             <td>
                &nbsp;
@@ -960,6 +967,9 @@ table td:first-child { border-left: none; }
             <td>
                45
             </td>
+            <td>
+               &nbsp;
+            </td>
          </tr>
          <tr>
             <td>
@@ -976,6 +986,9 @@ table td:first-child { border-left: none; }
             </td>
             <td>
                15 45
+            </td>
+            <td>
+               &nbsp;
             </td>
          </tr>
          <tr>
@@ -994,6 +1007,9 @@ table td:first-child { border-left: none; }
             <td>
                15 45
             </td>
+            <td>
+               &nbsp;
+            </td>
          </tr>
          <tr>
             <td>
@@ -1010,6 +1026,9 @@ table td:first-child { border-left: none; }
             </td>
             <td>
                15 45
+            </td>
+            <td>
+               &nbsp;
             </td>
          </tr>
          <tr>
@@ -1028,6 +1047,9 @@ table td:first-child { border-left: none; }
             <td>
                15
             </td>
+            <td>
+               &nbsp;
+            </td>
          </tr>
          <tr>
             <td>
@@ -1044,6 +1066,9 @@ table td:first-child { border-left: none; }
             </td>
             <td>
                15 45
+            </td>
+            <td>
+               &nbsp;
             </td>
          </tr>
          <tr>
@@ -1062,6 +1087,9 @@ table td:first-child { border-left: none; }
             <td>
                45
             </td>
+            <td>
+               &nbsp;
+            </td>
          </tr>
          <tr>
             <td>
@@ -1079,10 +1107,16 @@ table td:first-child { border-left: none; }
             <td>
                &nbsp;
             </td>
+            <td>
+               &nbsp;
+            </td>
          </tr>
          <tr>
             <td>
                17
+            </td>
+            <td>
+               &nbsp;
             </td>
             <td>
                &nbsp;
@@ -1113,6 +1147,9 @@ table td:first-child { border-left: none; }
             <td>
                &nbsp;
             </td>
+            <td>
+               &nbsp;
+            </td>
          </tr>
          <tr>
             <td>
@@ -1120,6 +1157,9 @@ table td:first-child { border-left: none; }
             </td>
             <td>
                45
+            </td>
+            <td>
+               &nbsp;
             </td>
             <td>
                &nbsp;
