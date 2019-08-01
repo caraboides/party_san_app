@@ -9,6 +9,8 @@ import 'i18n.dart';
 import 'menu.dart';
 
 const String html = '''
+    <link href="https://fonts.googleapis.com/css?family=Pirata+One&display=swap" rel="stylesheet">
+
 <style>
 td,th {
 text-align: center;
@@ -16,6 +18,7 @@ text-align: center;
 table {
     border:none;
     border-collapse: collapse;
+    width: 100%;
 }
 
 table td {
@@ -33,6 +36,14 @@ table td:last-child {
 table { border: none; border-collapse: collapse; }
 table td { border-left: 1px solid #000; }
 table td:first-child { border-left: none; }
+    h2 {
+    font-family: 'Pirata One', cursive;
+    font-size: 27px;
+    }
+    body {
+      margin: 20px;
+    }
+
 </style>
    <header>
       <h2 class="">
