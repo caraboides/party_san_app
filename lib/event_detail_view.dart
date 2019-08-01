@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:optional/optional_internal.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -82,10 +83,12 @@ class EventDetailView extends StatelessWidget {
               ),
             ),
           ),
-        // Padding(
-        //   padding: EdgeInsets.only(top: 15),
-        //   child: Image.network(data.image),
-        // ),
+        Padding(
+          padding: EdgeInsets.only(top: 15),
+          child: CachedNetworkImage(
+            imageUrl: data.image,
+          ),
+        ),
       ];
 
   @override
@@ -106,7 +109,15 @@ class EventDetailView extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: ListView(
           children: <Widget>[
-            // data.map<Widget>((d) => Image.network(d.logo)).orElse(Container()),
+            data
+                .map<Widget>((d) => Container(
+                      color: Colors.black,
+                      child: CachedNetworkImage(
+                        imageUrl: d.logo,
+                      ),
+                      height: 100,
+                    ))
+                .orElse(Container()),
             Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: 20),
               child: Text(

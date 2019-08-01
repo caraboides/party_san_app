@@ -31,8 +31,17 @@ class MyApp extends StatelessWidget {
 
   final Firestore firestore;
 
+  void _precacheImages(BuildContext context) {
+    precacheImage(
+      AssetImage('assets/logo_textured.png'),
+      context,
+      size: Size(304, 152),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    _precacheImages(context);
     initializeNotifications();
     return ScheduleProvider(
       firestore: firestore,

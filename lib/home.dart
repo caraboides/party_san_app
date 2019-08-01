@@ -120,7 +120,11 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               ),
             ],
           ),
-          title: Image.asset('assets/logo.png'),
+          title: Image.asset(
+            'assets/logo.png',
+            width: 111,
+            height: 56,
+          ),
           /*Text(
             festivalName,
             style: FestivalTheme.appBarTextStyle,

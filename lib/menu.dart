@@ -23,13 +23,16 @@ class Menu extends StatelessWidget {
   Widget build(BuildContext context) {
     final i18n = AppLocalizations.of(context);
     final navigator = Navigator.of(context);
-    final theme = Theme.of(context);
     return Drawer(
       child: Container(
         color: FestivalTheme.menuBackgroundColor,
         child: ListView(
           children: <Widget>[
-            Image.asset('assets/logo_textured.png'),
+            Image.asset(
+              'assets/logo_textured.png',
+              width: 304,
+              height: 152,
+            ),
             ListTile(
               title: Text(
                 i18n.schedule,
