@@ -1178,9 +1178,8 @@ body {
 class Drive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final String contentBase64 =
-        base64Encode(const Utf8Encoder().convert(html));
-    String url = "data:text/html;base64,$contentBase64";
+    final contentBase64 = base64Encode(const Utf8Encoder().convert(html));
+    final url = 'data:text/html;base64,$contentBase64';
     final i18n = AppLocalizations.of(context);
     return Scaffold(
       drawer: const Menu(),

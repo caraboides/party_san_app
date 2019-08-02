@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:dcache/dcache.dart';
 
-import 'openWeather.dart';
+import 'open_weather.dart';
 import 'utils.dart';
 
 Cache c = SimpleCache<int, List<Weather>>(storage: SimpleStorage(size: 1));
 
 class WeatherWidget extends StatefulWidget {
-  WeatherWidget(
+  const WeatherWidget(
     this.date, {
     Key key,
   }) : super(key: key);
@@ -22,10 +22,9 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   Widget _lastWeather;
 
   Future<List<Weather>> _loadWeather() {
-    WeatherStation weatherStation =
-        WeatherStation("4b62a945622a3c28596f5a03a346a0a9");
-    int currenthour = DateTime.now().hour;
-    List<Weather> oldValue = c.get(currenthour);
+    final weatherStation = WeatherStation('4b62a945622a3c28596f5a03a346a0a9');
+    final currenthour = DateTime.now().hour;
+    final List<Weather> oldValue = c.get(currenthour);
     if (oldValue != null) {
       return Future.value(oldValue);
     } else {
@@ -38,7 +37,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
   Weather getWeatherForDate(List<Weather> weathers, DateTime date) =>
       weathers.firstWhere(
-        (current) => isSameDay(current.date, date), // TODO(SF) korrekt?
+        (current) => isSameDay(current.date, date), // TODO(SF): korrekt?
         orElse: () => null,
       );
 
@@ -49,10 +48,11 @@ class _WeatherWidgetState extends State<WeatherWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "${weather.temperature.celsius.toStringAsFixed(1)}°C  ${weather.weatherDescription}",
+                '${weather.temperature.celsius.toStringAsFixed(1)}°C  '
+                '${weather.weatherDescription}',
               ),
               Image.network(
-                "http://openweathermap.org/img/wn/${weather.weatherIcon}@2x.png",
+                'http://openweathermap.org/img/wn/${weather.weatherIcon}@2x.png',
               ),
             ],
           ),
@@ -60,26 +60,26 @@ class _WeatherWidgetState extends State<WeatherWidget> {
       );
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<Weather>>(
-      future: _loadWeather(),
-      builder: (BuildContext context, AsyncSnapshot<List<Weather>> list) {
-        switch (list.connectionState) {
-          case ConnectionState.done:
-            if (list.hasError) return Text('Error: ${list.error}');
-            Weather weather = getWeatherForDate(list.data, widget.date);
-            if (weather == null) {
+  Widget build(BuildContext context) => FutureBuilder<List<Weather>>(
+        future: _loadWeather(),
+        builder: (BuildContext context, AsyncSnapshot<List<Weather>> list) {
+          switch (list.connectionState) {
+            case ConnectionState.done:
+              if (list.hasError) {
+                return Text('Error: ${list.error}');
+              }
+              final weather = getWeatherForDate(list.data, widget.date);
+              if (weather == null) {
+                return _lastWeather ?? Container();
+              }
+              _lastWeather = _buildWeatherCard(weather);
+              return _lastWeather;
+            case ConnectionState.none:
+            case ConnectionState.active:
+            case ConnectionState.waiting:
+            default:
               return _lastWeather ?? Container();
-            }
-            _lastWeather = _buildWeatherCard(weather);
-            return _lastWeather;
-          case ConnectionState.none:
-          case ConnectionState.active:
-          case ConnectionState.waiting:
-          default:
-            return _lastWeather ?? Container();
-        }
-      },
-    );
-  }
+          }
+        },
+      );
 }

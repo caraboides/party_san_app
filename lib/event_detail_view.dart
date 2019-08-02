@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:optional/optional_internal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'band.dart';
@@ -97,7 +96,7 @@ class EventDetailView extends StatelessWidget {
     final myScheduleController = MyScheduleController.of(context);
     final i18n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final Optional<BandData> data = Bands.of(context, event.bandName);
+    final data = Bands.of(context, event.bandName);
     final isLiked = myScheduleController.mySchedule.isEventLiked(event.id);
     return Scaffold(
       appBar: AppBar(

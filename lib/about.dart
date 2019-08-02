@@ -6,8 +6,12 @@ import 'i18n.dart';
 import 'menu.dart';
 
 class About extends StatelessWidget {
-  Widget _buildLink(ThemeData theme, String url,
-          {String label, bool shrink: false}) =>
+  Widget _buildLink(
+    ThemeData theme,
+    String url, {
+    String label,
+    bool shrink = false,
+  }) =>
       FlatButton(
         textColor: theme.accentColor,
         child: Text(label ?? url),
@@ -116,7 +120,7 @@ class About extends StatelessWidget {
                 showLicensePage(
                   context: context,
                   applicationName: '$festivalName App',
-                  applicationVersion: '1.0.0', // TODO(SF) fill automatically?
+                  applicationVersion: '1.0.0', // TODO(SF): fill automatically?
                   applicationLegalese: i18n.aboutLicense,
                 );
               },

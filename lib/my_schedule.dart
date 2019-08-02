@@ -8,12 +8,12 @@ import 'model.dart';
 import 'notifications.dart';
 
 const _myScheduleFileName = 'my_schedule.txt';
-typedef void ToggleEventFunction(AppLocalizations i18n, Event event);
+typedef ToggleEventFunction = void Function(AppLocalizations i18n, Event event);
 
 class MyScheduleController extends InheritedWidget {
-  MyScheduleController({
-    Key key,
+  const MyScheduleController({
     @required Widget child,
+    Key key,
     this.mySchedule,
     this.toggleEvent,
   }) : super(key: key, child: child);
@@ -22,19 +22,18 @@ class MyScheduleController extends InheritedWidget {
   final ToggleEventFunction toggleEvent;
 
   static MyScheduleController of(BuildContext context) {
-    MyScheduleController myScheduleWidget =
+    final MyScheduleController myScheduleWidget =
         context.inheritFromWidgetOfExactType(MyScheduleController);
     return myScheduleWidget;
   }
 
   @override
-  bool updateShouldNotify(MyScheduleController oldWidget) {
-    return mySchedule != oldWidget.mySchedule;
-  }
+  bool updateShouldNotify(MyScheduleController oldWidget) =>
+      mySchedule != oldWidget.mySchedule;
 }
 
 class MyScheduleProvider extends StatefulWidget {
-  MyScheduleProvider({
+  const MyScheduleProvider({
     Key key,
     this.child,
   }) : super(key: key);
@@ -55,7 +54,7 @@ class MyScheduleProviderState extends State<MyScheduleProvider> {
     _loadMySchedule();
   }
 
-  void _loadMySchedule() async {
+  Future<void> _loadMySchedule() async {
     final Map<String, dynamic> json =
         (await appStorage.loadJson(_myScheduleFileName))
             .orElse(<String, int>{});
@@ -64,7 +63,7 @@ class MyScheduleProviderState extends State<MyScheduleProvider> {
     });
   }
 
-  void _saveMySchedule() async {
+  Future<void> _saveMySchedule() async {
     if (_debounce?.isActive ?? false) {
       _debounce.cancel();
     }
@@ -77,13 +76,11 @@ class MyScheduleProviderState extends State<MyScheduleProvider> {
     _mySchedule.toggleEvent(
       event.id,
       onRemove: cancelNotification,
-      getValueToInsert: () async {
-        return event.start.isAfter(DateTime.now())
-            ? await scheduleNotificationForEvent(i18n, event)
-            : 0;
-      },
+      getValueToInsert: () async => event.start.isAfter(DateTime.now())
+          ? await scheduleNotificationForEvent(i18n, event)
+          : 0,
       onUpdate: () {
-        this.setState(() {
+        setState(() {
           _mySchedule = _mySchedule.createCopy();
         });
         _saveMySchedule();
@@ -92,11 +89,9 @@ class MyScheduleProviderState extends State<MyScheduleProvider> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MyScheduleController(
-      mySchedule: _mySchedule,
-      child: widget.child,
-      toggleEvent: _toggleEvent,
-    );
-  }
+  Widget build(BuildContext context) => MyScheduleController(
+        mySchedule: _mySchedule,
+        child: widget.child,
+        toggleEvent: _toggleEvent,
+      );
 }

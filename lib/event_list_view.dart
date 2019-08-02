@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
 
-import 'i18n.dart';
 import 'festival_config.dart';
+import 'i18n.dart';
 import 'model.dart';
 import 'my_schedule.dart';
 import 'schedule.dart';
@@ -12,11 +12,6 @@ import 'schedule.dart';
 const double _listItemHeight = 70;
 
 class EventListView extends StatefulWidget {
-  final EventFilter eventFilter;
-  final bool bandView;
-  final ValueChanged<Event> openEventDetails;
-  final bool favoritesOnly;
-
   const EventListView({
     Key key,
     this.eventFilter,
@@ -24,6 +19,11 @@ class EventListView extends StatefulWidget {
     this.openEventDetails,
     this.favoritesOnly,
   }) : super(key: key);
+
+  final EventFilter eventFilter;
+  final bool bandView;
+  final ValueChanged<Event> openEventDetails;
+  final bool favoritesOnly;
 
   @override
   State<StatefulWidget> createState() => EventListViewState();
@@ -123,7 +123,7 @@ class EventListViewState extends State<EventListView> {
 }
 
 class CustomListItemTwo extends StatelessWidget {
-  CustomListItemTwo({
+  const CustomListItemTwo({
     Key key,
     this.isLiked,
     this.bandname,
@@ -155,9 +155,9 @@ class CustomListItemTwo extends StatelessWidget {
         child: SafeArea(
           top: false,
           bottom: false,
-          minimum: EdgeInsets.symmetric(horizontal: 16.0),
+          minimum: EdgeInsets.symmetric(horizontal: 16),
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             height: _listItemHeight,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,7 +190,7 @@ class CustomListItemTwo extends StatelessWidget {
 }
 
 class _EventDescription extends StatelessWidget {
-  _EventDescription({
+  const _EventDescription({
     Key key,
     this.bandname,
     this.start,

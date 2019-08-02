@@ -4,15 +4,10 @@ import 'dart:io';
 import 'package:optional/optional_internal.dart';
 import 'package:path_provider/path_provider.dart';
 
-
 String directory;
 
-Future<String> _getDirectory() async {
-  if (directory == null) {
-    directory = (await getApplicationDocumentsDirectory()).path;
-  }
-  return directory;
-}
+Future<String> _getDirectory() async =>
+    directory ??= (await getApplicationDocumentsDirectory()).path;
 
 Future<File> _getFileHandle(String fileName) async {
   final directory = await _getDirectory();

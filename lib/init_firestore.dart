@@ -4,11 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'config.dart';
 
 Future<Firestore> initFirestore() async {
-  final FirebaseApp app = await FirebaseApp.configure(
+  final app = await FirebaseApp.configure(
     name: 'init',
     options: firebaseOptions,
   );
-  final Firestore firestore = Firestore(app: app);
+  final firestore = Firestore(app: app);
   await firestore.settings(
     timestampsInSnapshotsEnabled: true,
     sslEnabled: true,

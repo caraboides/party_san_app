@@ -6,7 +6,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import 'festival_config.dart';
 import 'menu.dart';
-import 'model.dart';
 
 const String faq = '''
     <link href="https://fonts.googleapis.com/css?family=Pirata+One&display=swap" rel="stylesheet">
@@ -91,23 +90,10 @@ const String faq = '''
 ''';
 
 class FAQ extends StatelessWidget {
-  parseFaqs(List<dynamic> json) {
-    return json
-        .map<Faq>(
-            (faq) => Faq(question: faq['question'], answer: faq['answer']))
-        .toList();
-  }
-
-  Future<List<Faq>> loadFaq(BuildContext context) async {
-    final List<dynamic> json = jsonDecode(await DefaultAssetBundle.of(context)
-        .loadString("assets/initialFaq.json"));
-    return parseFaqs(json);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final String contentBase64 = base64Encode(const Utf8Encoder().convert(faq));
-    String url = "data:text/html;base64,$contentBase64";
+    final contentBase64 = base64Encode(const Utf8Encoder().convert(faq));
+    final url = 'data:text/html;base64,$contentBase64';
     return Scaffold(
       drawer: const Menu(),
       appBar: AppBar(

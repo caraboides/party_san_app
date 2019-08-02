@@ -5,13 +5,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'about.dart';
 import 'band.dart';
+import 'drive.dart';
 import 'faq.dart';
 import 'festival_config.dart';
 import 'home.dart';
 import 'i18n.dart';
 import 'init_firestore.dart';
 import 'initialization.dart';
-import 'drive.dart';
 import 'my_schedule.dart';
 import 'notifications.dart';
 import 'schedule.dart';
@@ -27,7 +27,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp(this.firestore);
+  const MyApp(this.firestore);
 
   final Firestore firestore;
 
@@ -56,9 +56,9 @@ class MyApp extends StatelessWidget {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
-            supportedLocales: [
-              const Locale('en', 'US'),
-              const Locale('de', 'DE'),
+            supportedLocales: const [
+              Locale('en', 'US'),
+              Locale('de', 'DE'),
             ],
             home: InitializationWidget(
               child: HomeScreen(),

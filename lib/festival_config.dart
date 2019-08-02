@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
 
-CrossAxisAlignment stageAlignment(stage) =>
-    stage == "Mainstage" ? CrossAxisAlignment.start : CrossAxisAlignment.end;
+CrossAxisAlignment stageAlignment(String stage) =>
+    stage == 'Mainstage' ? CrossAxisAlignment.start : CrossAxisAlignment.end;
 
 ImmortalList<DateTime> get days => ImmortalList<DateTime>([
       DateTime(2019, 8, 8),
@@ -14,7 +14,7 @@ Duration daySwitchOffset = Duration(hours: 3);
 
 const String festivalName = 'Party.San';
 
-const String geoLocationQuery = 'lat=51.25&' + 'lon=10.67&';
+const String geoLocationQuery = 'lat=51.25&lon=10.67';
 
 class FestivalTheme {
   static final ThemeData theme = ThemeData(
@@ -51,11 +51,11 @@ class FestivalTheme {
     fontWeight: FontWeight.bold,
   );
   static const TextStyle eventDateTextStyle = TextStyle(
-    fontSize: 12.0,
+    fontSize: 12,
     color: Colors.black54,
   );
   static const TextStyle eventStageTextStyle = TextStyle(
-    fontSize: 12.0,
+    fontSize: 12,
     color: Colors.black87,
   );
   static final TextStyle menuEntryTextStyle = theme.textTheme.title.copyWith(

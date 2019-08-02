@@ -7,9 +7,9 @@ import 'package:optional/optional_internal.dart';
 import 'model.dart';
 
 class Bands extends InheritedWidget {
-  Bands({
-    Key key,
+  const Bands({
     @required Widget child,
+    Key key,
     this.bands,
   }) : super(key: key, child: child);
 
@@ -19,13 +19,13 @@ class Bands extends InheritedWidget {
   bool updateShouldNotify(Bands oldWidget) => oldWidget.bands != bands;
 
   static Optional<BandData> of(BuildContext context, String id) {
-    Bands data = context.inheritFromWidgetOfExactType(Bands);
+    final Bands data = context.inheritFromWidgetOfExactType(Bands);
     return data.bands[id];
   }
 }
 
 class BandsProvider extends StatefulWidget {
-  BandsProvider({
+  const BandsProvider({
     Key key,
     this.child,
     this.firestore,
@@ -58,7 +58,7 @@ class BandsProviderState extends State<BandsProvider> {
 
   Future<ImmortalMap<String, BandData>> _loadFallbackData() =>
       DefaultAssetBundle.of(context)
-          .loadString("assets/bands.json")
+          .loadString('assets/bands.json')
           .then<ImmortalMap<String, BandData>>(
               (v) => _parseJsonBands(jsonDecode(v)));
 
@@ -115,10 +115,8 @@ class BandsProviderState extends State<BandsProvider> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Bands(
-      bands: _bands,
-      child: widget.child,
-    );
-  }
+  Widget build(BuildContext context) => Bands(
+        bands: _bands,
+        child: widget.child,
+      );
 }

@@ -12,9 +12,9 @@ import 'schedule.dart';
 import 'weather.dart';
 
 class HomeScreen extends StatefulWidget {
-  final bool favoritesOnly;
-
   const HomeScreen({this.favoritesOnly = false});
+
+  final bool favoritesOnly;
 
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
@@ -76,21 +76,19 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     ));
   }
 
-  Widget _buildEventList(BuildContext context, {DateTime date}) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        if (date != null) WeatherWidget(date),
-        EventListView(
-          eventFilter:
-              date != null ? Schedule.dayOf(date) : Schedule.allBandsOf,
-          bandView: date == null,
-          openEventDetails: (event) => _openEventDetails(context, event),
-          favoritesOnly: favoritesOnly,
-        ),
-      ],
-    );
-  }
+  Widget _buildEventList(BuildContext context, {DateTime date}) => Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          if (date != null) WeatherWidget(date),
+          EventListView(
+            eventFilter:
+                date != null ? Schedule.dayOf(date) : Schedule.allBandsOf,
+            bandView: date == null,
+            openEventDetails: (event) => _openEventDetails(context, event),
+            favoritesOnly: favoritesOnly,
+          ),
+        ],
+      );
 
   int get _initialTab {
     final now = DateTime.now();

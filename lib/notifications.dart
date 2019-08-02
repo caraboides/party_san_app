@@ -8,13 +8,14 @@ import 'festival_config.dart';
 import 'i18n.dart';
 import 'model.dart';
 
-final androidPlatformChannelSpecifics = AndroidNotificationDetails(
+final AndroidNotificationDetails _androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(
   'event_notification',
   'Gig Reminder',
   'Notification to remind of scheduled gigs',
   importance: Importance.Max,
   priority: Priority.High,
-  color: Color(0x000000),
+  color: Color(0xFF000000),
 );
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 int _nextNotificationId = 0;
@@ -29,17 +30,21 @@ void initializeNotifications() {
     }
   });
 
-  var initializationSettingsAndroid =
+  final initializationSettingsAndroid =
       AndroidInitializationSettings('notification_icon');
-  var initializationSettings = InitializationSettings(
-      initializationSettingsAndroid, IOSInitializationSettings());
-  flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: onSelectNotification);
+  final initializationSettings = InitializationSettings(
+    initializationSettingsAndroid,
+    IOSInitializationSettings(),
+  );
+  flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onSelectNotification: onSelectNotification,
+  );
 }
 
 Future onSelectNotification(String payload) async {
   if (payload != null) {
-    debugPrint('notification payload: ' + payload);
+    debugPrint('notification payload: $payload');
   }
 }
 
@@ -48,8 +53,10 @@ Future<int> scheduleNotificationForEvent(
   Event event, [
   int notificationId,
 ]) async {
-  NotificationDetails platformChannelSpecifics = NotificationDetails(
-      androidPlatformChannelSpecifics, IOSNotificationDetails());
+  final platformChannelSpecifics = NotificationDetails(
+    _androidPlatformChannelSpecifics,
+    IOSNotificationDetails(),
+  );
   final id = notificationId ?? _nextNotificationId++;
   await flutterLocalNotificationsPlugin.schedule(
     id,
@@ -61,9 +68,8 @@ Future<int> scheduleNotificationForEvent(
   return id;
 }
 
-Future<void> cancelNotification(int notificationId) {
-  return flutterLocalNotificationsPlugin.cancel(notificationId);
-}
+Future<void> cancelNotification(int notificationId) =>
+    flutterLocalNotificationsPlugin.cancel(notificationId);
 
 Future<void> verifyScheduledEventNotifications(
   AppLocalizations i18n,
@@ -72,14 +78,14 @@ Future<void> verifyScheduledEventNotifications(
   final pendingNotifications =
       await flutterLocalNotificationsPlugin.pendingNotificationRequests();
   final scheduledNotifications = {};
-  pendingNotifications.forEach((notification) {
+  for (final notification in pendingNotifications) {
     _nextNotificationId = max(_nextNotificationId, notification.id + 1);
     if (requiredNotifications[notification.id] == null) {
       cancelNotification(notification.id);
     } else {
       scheduledNotifications[notification.id] = true;
     }
-  });
+  }
   requiredNotifications.forEach((notificationId, event) {
     if (scheduledNotifications[notificationId] == null) {
       scheduleNotificationForEvent(i18n, event, notificationId);

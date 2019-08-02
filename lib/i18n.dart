@@ -6,6 +6,33 @@ const timeFormatString = 'HH:mm';
 const dateTimeFormatString = 'E HH:mm';
 
 class AppLocalizations {
+  AppLocalizations({
+    this.dayTitleFormat,
+    this.bands,
+    this.schedule,
+    this.mySchedule,
+    this.drive,
+    this.faq,
+    this.addEventToSchedule,
+    this.removeEventFromSchedule,
+    this.locale,
+    this.eventDetailsHeader,
+    this.eventNotificationFormat,
+    this.about,
+    this.aboutLicense,
+    this.aboutCreated,
+    this.noInfo,
+    this.emptyScheduleHeadline,
+    this.emptySchedule,
+    this.origin,
+    this.roots,
+    this.style,
+    this.playOnSpotify,
+  });
+  /*: TODO(SF) why does this not work?
+        this.timeFormat = DateFormat(timeFormatString, locale),
+        this.dateTimeFormat = DateFormat(dateTimeFormatString, locale)*/
+
   final String dayTitleFormat;
   final String bands;
   final String schedule;
@@ -31,33 +58,6 @@ class AppLocalizations {
   // final DateFormat timeFormat;
   // final DateFormat dateTimeFormat;
 
-  AppLocalizations({
-    this.dayTitleFormat,
-    this.bands,
-    this.schedule,
-    this.mySchedule,
-    this.drive,
-    this.faq,
-    this.addEventToSchedule,
-    this.removeEventFromSchedule,
-    this.locale,
-    this.eventDetailsHeader,
-    this.eventNotificationFormat,
-    this.about,
-    this.aboutLicense,
-    this.aboutCreated,
-    this.noInfo,
-    this.emptyScheduleHeadline,
-    this.emptySchedule,
-    this.origin,
-    this.roots,
-    this.style,
-    this.playOnSpotify,
-  }) /*: TODO(SF) why does this not work?
-        this.timeFormat = DateFormat(timeFormatString, locale),
-        this.dateTimeFormat = DateFormat(dateTimeFormatString, locale)*/
-  ;
-
   DateFormat get timeFormat => DateFormat(timeFormatString, locale);
   DateFormat get dateTimeFormat => DateFormat(dateTimeFormatString, locale);
 
@@ -72,9 +72,8 @@ class AppLocalizations {
 
   static const delegate = AppLocalizationsDelegate();
 
-  static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
-  }
+  static AppLocalizations of(BuildContext context) =>
+      Localizations.of<AppLocalizations>(context, AppLocalizations);
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -84,16 +83,15 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   bool isSupported(Locale locale) => ['en', 'de'].contains(locale.languageCode);
 
   @override
-  Future<AppLocalizations> load(Locale locale) {
-    return SynchronousFuture<AppLocalizations>(
-        locale.languageCode == 'de' ? de : en);
-  }
+  Future<AppLocalizations> load(Locale locale) =>
+      SynchronousFuture<AppLocalizations>(
+          locale.languageCode == 'de' ? de : en);
 
   @override
   bool shouldReload(AppLocalizationsDelegate old) => false;
 }
 
-final de = AppLocalizations(
+final AppLocalizations de = AppLocalizations(
   dayTitleFormat: 'Tag {number}',
   bands: 'Bands',
   schedule: 'Plan',
@@ -117,7 +115,7 @@ final de = AppLocalizations(
   playOnSpotify: 'Reinhören bei Spotify',
 );
 
-final en = AppLocalizations(
+final AppLocalizations en = AppLocalizations(
   dayTitleFormat: 'Day {number}',
   bands: 'Bands',
   schedule: 'Schedule',

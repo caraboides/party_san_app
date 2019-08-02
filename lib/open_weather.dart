@@ -7,36 +7,32 @@ import 'festival_config.dart';
 /// Custom Exception for the plugin,
 /// thrown whenever sufficient permissions weren't granted
 class LocationPermissionException implements Exception {
-  String _cause;
-
   LocationPermissionException(this._cause);
 
+  final String _cause;
+
   @override
-  String toString() {
-    return _cause;
-  }
+  String toString() => _cause;
 }
 
 /// Custom Exception for the plugin,
 /// thrown whenever the API responds with an error and body could not be parsed.
 class OpenWeatherAPIException implements Exception {
-  String _cause;
-
   OpenWeatherAPIException(this._cause);
 
+  final String _cause;
+
   @override
-  String toString() {
-    return _cause;
-  }
+  String toString() => _cause;
 }
 
 /// A class for holding a temperature.
 /// Can output temperature as Kelvin, Celsius or Fahrenheit.
 /// All results are returned as [double].
 class Temperature {
-  double _kelvin;
-
   Temperature(this._kelvin);
+
+  final double _kelvin;
 
   /// Convert temperature to Kelvin
   double get kelvin => _kelvin;
@@ -48,9 +44,7 @@ class Temperature {
   double get fahrenheit => _kelvin * (9 / 5) - 459.67;
 
   @override
-  String toString() {
-    return '${celsius.toStringAsFixed(1)} Celsius';
-  }
+  String toString() => '${celsius.toStringAsFixed(1)} Celsius';
 }
 
 /// Safely unpack a double value from a [Map] object.
@@ -60,7 +54,7 @@ double _unpackDouble(Map<String, dynamic> M, String k) {
       return M[k] + 0.0;
     }
   }
-  return 0.0;
+  return 0;
 }
 
 /// Safely unpack a string value from a [Map] object.
@@ -70,15 +64,16 @@ String _unpackString(Map<String, dynamic> M, String k) {
       return M[k];
     }
   }
-  return "";
+  return '';
 }
 
 /// Safely unpacks a unix timestamp from a [Map] object,
-/// i.e. an integer value of milliseconds and converts this to a [DateTime] object.
+/// i.e. an integer value of milliseconds and converts this to a [DateTime]
+/// object.
 DateTime _unpackDate(Map<String, dynamic> M, String k) {
   if (M != null) {
     if (M.containsKey(k)) {
-      int millis = M[k] * 1000;
+      final millis = M[k] * 1000;
       return DateTime.fromMillisecondsSinceEpoch(millis);
     }
   }
@@ -88,7 +83,7 @@ DateTime _unpackDate(Map<String, dynamic> M, String k) {
 /// Unpacks a [double] value from a [Map] object and converts this to
 /// a [Temperature] object.
 Temperature _unpackTemperature(Map<String, dynamic> M, String k) {
-  double kelvin = _unpackDouble(M, k);
+  final kelvin = _unpackDouble(M, k);
   return Temperature(kelvin);
 }
 
@@ -96,30 +91,15 @@ Temperature _unpackTemperature(Map<String, dynamic> M, String k) {
 /// This includes various measures such as location,
 /// temperature, wind, snow, rain and humidity.
 class Weather {
-  String _country, _areaName, _weatherMain, _weatherDescription, _weatherIcon;
-  Temperature _temperature, _tempMin, _tempMax;
-  DateTime _date, _sunrise, _sunset;
-  double _latitude,
-      _longitude,
-      _pressure,
-      _windSpeed,
-      _windDegree,
-      _humidity,
-      _cloudiness,
-      _rainLastHour,
-      _rainLast3Hours,
-      _snowLastHour,
-      _snowLast3Hours;
-
   Weather(Map<String, dynamic> weatherData) {
-    Map<String, dynamic> main = weatherData['main'];
-    Map<String, dynamic> coord = weatherData['coord'];
-    Map<String, dynamic> sys = weatherData['sys'];
-    Map<String, dynamic> wind = weatherData['wind'];
-    Map<String, dynamic> clouds = weatherData['clouds'];
-    Map<String, dynamic> rain = weatherData['rain'];
-    Map<String, dynamic> snow = weatherData['snow'];
-    Map<String, dynamic> weather = weatherData['weather'][0];
+    final Map<String, dynamic> main = weatherData['main'];
+    final Map<String, dynamic> coord = weatherData['coord'];
+    final Map<String, dynamic> sys = weatherData['sys'];
+    final Map<String, dynamic> wind = weatherData['wind'];
+    final Map<String, dynamic> clouds = weatherData['clouds'];
+    final Map<String, dynamic> rain = weatherData['rain'];
+    final Map<String, dynamic> snow = weatherData['snow'];
+    final Map<String, dynamic> weather = weatherData['weather'][0];
 
     _latitude = _unpackDouble(coord, 'lat');
     _longitude = _unpackDouble(coord, 'lon');
@@ -153,15 +133,29 @@ class Weather {
     _date = _unpackDate(weatherData, 'dt');
   }
 
-  String toString() {
-    return '''
+  String _country, _areaName, _weatherMain, _weatherDescription, _weatherIcon;
+  Temperature _temperature, _tempMin, _tempMax;
+  DateTime _date, _sunrise, _sunset;
+  double _latitude,
+      _longitude,
+      _pressure,
+      _windSpeed,
+      _windDegree,
+      _humidity,
+      _cloudiness,
+      _rainLastHour,
+      _rainLast3Hours,
+      _snowLastHour,
+      _snowLast3Hours;
+
+  @override
+  String toString() => '''
     Place Name: $_areaName ($_country)
     Date: $_date
     Weather: $_weatherMain, $_weatherDescription
     Temp: $_temperature, Temp (min): $_tempMin, Temp (max): $_tempMax
     Sunrise: $_sunrise, Sunset: $_sunset
     ''';
-  }
 
   /// A long description of the weather
   String get weatherDescription => _weatherDescription;
@@ -232,18 +226,19 @@ class Weather {
 
 /// Plugin for fetching weather data in JSON.
 class WeatherStation {
-  String _apiKey;
+  WeatherStation(this._apiKey);
+
+  final String _apiKey;
+
   static const String FORECAST = 'forecast';
   static const String WEATHER = 'weather';
-  WeatherStation(this._apiKey);
 
   /// Fetch current weather based on geographical coordinates
   /// Result is JSON.
   /// For API documentation, see: https://openweathermap.org/current
   Future<Weather> currentWeather() async {
     try {
-      Map<String, dynamic> currentWeather =
-          await _requestOpenWeatherAPI(WEATHER);
+      final currentWeather = await _requestOpenWeatherAPI(WEATHER);
       return Weather(currentWeather);
     } catch (exception) {
       print(exception);
@@ -255,11 +250,10 @@ class WeatherStation {
   /// Result is JSON.
   /// For API documentation, see: https://openweathermap.org/forecast5
   Future<List<Weather>> fiveDayForecast() async {
-    List<Weather> forecasts = List<Weather>();
+    var forecasts = <Weather>[];
     try {
-      Map<String, dynamic> jsonForecasts =
-          await _requestOpenWeatherAPI(FORECAST);
-      List<dynamic> forecastsJson = jsonForecasts['list'];
+      final jsonForecasts = await _requestOpenWeatherAPI(FORECAST);
+      final List<dynamic> forecastsJson = jsonForecasts['list'];
       forecasts = forecastsJson.map((w) => Weather(w)).toList();
     } catch (exception) {
       print(exception);
@@ -270,18 +264,16 @@ class WeatherStation {
   Future<Map<String, dynamic>> _requestOpenWeatherAPI(String tag) async {
     /// Check if device is allowed to get location
     /// Build HTTP get url by passing the required parameters
-    String url = 'http://api.openweathermap.org/data/2.5/' +
-        '$tag?' +
-        geoLocationQuery +
-        'appid=$_apiKey';
+    final url = 'http://api.openweathermap.org/data/2.5/'
+        '$tag?$geoLocationQuery&appid=$_apiKey';
 
     /// Send HTTP get response with the url
-    http.Response response = await http.get(url);
+    final response = await http.get(url);
 
     /// Perform error checking on response:
     /// Status code 200 means everything went well
     if (response.statusCode == 200) {
-      Map<String, dynamic> jsonBody = json.decode(response.body);
+      final Map<String, dynamic> jsonBody = json.decode(response.body);
       return jsonBody;
     }
 
@@ -289,8 +281,9 @@ class WeatherStation {
     /// or some other unspecified error could occur.
     /// The concrete error should be clear from the HTTP response body.
     else {
-      throw new OpenWeatherAPIException(
-          "OpenWeather API Exception: ${response.body}");
+      throw OpenWeatherAPIException(
+        'OpenWeather API Exception: ${response.body}',
+      );
     }
   }
 }
