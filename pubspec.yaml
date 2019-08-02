@@ -35,6 +35,7 @@ flutter:
      - assets/bands.json
      - assets/logo.png
      - assets/logo_textured.png
+     - assets/mar.gif
 
   fonts:
     - family: Pirata One

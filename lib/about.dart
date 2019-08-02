@@ -102,14 +102,12 @@ class About extends StatelessWidget {
                   label: 'Rodrigo Fuenzalida', shrink: true),
             ]),
             Divider(),
-            SizedBox(height: 5),
-            Text('Seenotrettung ist kein Verbrechen!'),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildLink(theme, 'https://sea-watch.org/'),
-              ],
+            GestureDetector(
+              child: Image.asset('assets/mar.gif'),
+              onTap: () => launch('http://www.metalheadsagainstracism.org/'),
             ),
+            Divider(),
+            SizedBox(height: 5),
             RaisedButton(
               color: theme.accentColor,
               child: Text(
