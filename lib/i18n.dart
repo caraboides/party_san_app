@@ -26,6 +26,7 @@ class AppLocalizations {
   final String origin;
   final String roots;
   final String style;
+  final String playOnSpotify;
 
   // final DateFormat timeFormat;
   // final DateFormat dateTimeFormat;
@@ -51,6 +52,7 @@ class AppLocalizations {
     this.origin,
     this.roots,
     this.style,
+    this.playOnSpotify,
   }) /*: TODO(SF) why does this not work?
         this.timeFormat = DateFormat(timeFormatString, locale),
         this.dateTimeFormat = DateFormat(dateTimeFormatString, locale)*/
@@ -112,6 +114,7 @@ final de = AppLocalizations(
   origin: 'Herkunft',
   roots: 'Wurzeln',
   style: 'Stil',
+  playOnSpotify: 'Reinhören bei Spotify',
 );
 
 final en = AppLocalizations(
@@ -135,4 +138,5 @@ final en = AppLocalizations(
   origin: 'Origin',
   roots: 'Roots',
   style: 'Style',
+  playOnSpotify: 'Play on Spotify',
 );

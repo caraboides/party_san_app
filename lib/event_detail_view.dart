@@ -23,7 +23,7 @@ class EventDetailView extends StatelessWidget {
         Padding(
           padding:
               const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 15),
-          child: Text(data.text),
+          child: Text(data.text ?? i18n.noInfo),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -36,7 +36,7 @@ class EventDetailView extends StatelessWidget {
                   style: FestivalTheme.bandDetailTextStyle,
                 ),
               ),
-              Text(_buildFlag(data.origin)),
+              Text(data.origin != null ? _buildFlag(data.origin) : i18n.noInfo),
             ],
           ),
         ),
@@ -51,7 +51,7 @@ class EventDetailView extends StatelessWidget {
                   style: FestivalTheme.bandDetailTextStyle,
                 ),
               ),
-              Text(data.style),
+              Text(data.style ?? i18n.noInfo),
             ],
           ),
         ),
@@ -66,7 +66,7 @@ class EventDetailView extends StatelessWidget {
                   style: FestivalTheme.bandDetailTextStyle,
                 ),
               ),
-              Text(data.roots),
+              Text(data.roots ?? i18n.noInfo),
             ],
           ),
         ),
@@ -79,16 +79,17 @@ class EventDetailView extends StatelessWidget {
                 launch(data.spotify);
               },
               child: Text(
-                "Play on Spotify",
+                i18n.playOnSpotify,
               ),
             ),
           ),
-        Padding(
-          padding: EdgeInsets.only(top: 15),
-          child: CachedNetworkImage(
-            imageUrl: data.image,
+        if (data.image != null)
+          Padding(
+            padding: EdgeInsets.only(top: 15),
+            child: CachedNetworkImage(
+              imageUrl: data.image,
+            ),
           ),
-        ),
       ];
 
   @override
@@ -110,13 +111,15 @@ class EventDetailView extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             data
-                .map<Widget>((d) => Container(
-                      color: Colors.black,
-                      child: CachedNetworkImage(
-                        imageUrl: d.logo,
-                      ),
-                      height: 100,
-                    ))
+                .map<Widget>((d) => d.logo != null
+                    ? Container(
+                        color: Colors.black,
+                        child: CachedNetworkImage(
+                          imageUrl: d.logo,
+                        ),
+                        height: 100,
+                      )
+                    : Container())
                 .orElse(Container()),
             Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: 20),
