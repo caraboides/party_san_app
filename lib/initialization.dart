@@ -7,9 +7,9 @@ import 'notifications.dart';
 import 'schedule.dart';
 
 class InitializationWidget extends StatefulWidget {
-  final Widget child;
-
   const InitializationWidget({Key key, this.child}) : super(key: key);
+
+  final Widget child;
 
   @override
   State<StatefulWidget> createState() => _InitalizationWidgetState();
@@ -18,17 +18,29 @@ class InitializationWidget extends StatefulWidget {
 class _InitalizationWidgetState extends State<InitializationWidget> {
   bool initalized = false;
 
+  void _handleEventNotificationIfExists(MySchedule mySchedule, Event event,
+          void Function(int notificationId) callback) =>
+      mySchedule.getEventNotificationId(event.id).ifPresent(callback);
+
   void _checkScheduledEventNotifications(BuildContext context) {
     final i18n = AppLocalizations.of(context);
     final mySchedule = MyScheduleController.of(context).mySchedule;
     final now = DateTime.now();
     final scheduledEvents = <int, Event>{};
-    final schedule = Schedule.allBandsOf(context);
-    if (schedule.isEmpty || mySchedule.isEmpty) {
+    final schedule = Schedule.of(context);
+    if (schedule.events.isEmpty || mySchedule.isEmpty) {
       return;
     }
-    schedule.forEach((event) {
-      mySchedule.getEventNotificationId(event.id).ifPresent((notificationId) {
+    schedule.events.forEach((event) {
+      _handleEventNotificationIfExists(mySchedule, event, (notificationId) {
+        if (event.start.isAfter(now)) {
+          scheduledEvents[notificationId] = event;
+        }
+      });
+    });
+    schedule.updatedEvents.forEach((event) {
+      _handleEventNotificationIfExists(mySchedule, event, (notificationId) {
+        cancelNotification(notificationId);
         if (event.start.isAfter(now)) {
           scheduledEvents[notificationId] = event;
         }

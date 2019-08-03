@@ -5,39 +5,42 @@ import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
 
 import 'festival_config.dart';
+import 'firestore.dart';
 import 'model.dart';
 import 'utils.dart';
 
 typedef EventFilter = ImmortalList<Event> Function(BuildContext context);
 
 class Schedule extends InheritedWidget {
-  Schedule({
-    Key key,
+  const Schedule({
     @required Widget child,
+    Key key,
     this.events,
+    this.updatedEvents,
   }) : super(key: key, child: child);
 
   final ImmortalList<Event> events;
+  final ImmortalList<Event> updatedEvents;
 
-  static ImmortalList<Event> of(BuildContext context) {
-    Schedule schedule = context.inheritFromWidgetOfExactType(Schedule);
-    return schedule.events;
+  static Schedule of(BuildContext context) {
+    final Schedule schedule = context.inheritFromWidgetOfExactType(Schedule);
+    return schedule;
   }
 
   static ImmortalList<Event> allBandsOf(BuildContext context) =>
-      of(context).sort((a, b) => a.bandName.compareTo(b.bandName));
+      of(context).events.sort((a, b) => a.bandName.compareTo(b.bandName));
 
-  static EventFilter dayOf(DateTime date) =>
-      (BuildContext context) => of(context)
-          .where((item) => isSameDay(item.start, date, offset: daySwitchOffset))
-          .sort((a, b) => a.start.compareTo(b.start));
+  static EventFilter dayOf(DateTime date) => (context) => of(context)
+      .events
+      .where((item) => isSameDay(item.start, date, offset: daySwitchOffset))
+      .sort((a, b) => a.start.compareTo(b.start));
 
   @override
   bool updateShouldNotify(Schedule oldWidget) => oldWidget.events != events;
 }
 
 class ScheduleProvider extends StatefulWidget {
-  ScheduleProvider({
+  const ScheduleProvider({
     Key key,
     this.child,
     this.firestore,
@@ -52,24 +55,21 @@ class ScheduleProvider extends StatefulWidget {
 
 class ScheduleProviderState extends State<ScheduleProvider> {
   Future<ImmortalList<Event>> _loadInitialData() async {
-    final scheduleRef = widget.firestore
-        .collection('festivals')
-        .document('party.san_2019')
-        .collection('schedule');
-    return scheduleRef.getDocuments().then<ImmortalList<Event>>((snapshot) {
-      return snapshot.documents.isEmpty
-          ? _loadFallbackData()
-          : parseEvents(snapshot.documents);
-      // TODO(SF) reschedule notifications for updates
-    }).catchError((error) {
-      print(error);
-      return _loadFallbackData();
-    });
+    final firebaseData = await loadData(widget.firestore, 'schedule');
+    final events = firebaseData.collection.isEmpty
+        ? await _loadFallbackData()
+        : _parseEvents(firebaseData.collection);
+    _updatedEvents = _parseEvents(firebaseData.updates);
+    final updatedEventIds =
+        _updatedEvents.map<String>((event) => event.id).toSet();
+    return events
+        .removeWhere((event) => updatedEventIds.contains(event.id))
+        .addAll(_updatedEvents);
   }
 
   Future<ImmortalList<Event>> _loadFallbackData() =>
       DefaultAssetBundle.of(context)
-          .loadString("assets/initial_schedule.json")
+          .loadString('assets/initial_schedule.json')
           .then<ImmortalList<Event>>((v) => _parseJsonEvents(jsonDecode(v)));
 
   Event _buildEventFromSnapshot(DocumentSnapshot snapshot) {
@@ -83,7 +83,7 @@ class ScheduleProviderState extends State<ScheduleProvider> {
     );
   }
 
-  ImmortalList<Event> parseEvents(List<DocumentSnapshot> snapshots) =>
+  ImmortalList<Event> _parseEvents(List<DocumentSnapshot> snapshots) =>
       ImmortalList(snapshots.map(_buildEventFromSnapshot));
 
   ImmortalList<Event> _parseJsonEvents(Map<String, dynamic> jsonMap) =>
@@ -99,6 +99,7 @@ class ScheduleProviderState extends State<ScheduleProvider> {
 
   /// List of events
   ImmortalList<Event> _events = ImmortalList<Event>.empty();
+  ImmortalList<Event> _updatedEvents = ImmortalList<Event>.empty();
 
   @override
   void initState() {
@@ -111,10 +112,9 @@ class ScheduleProviderState extends State<ScheduleProvider> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Schedule(
-      events: _events,
-      child: widget.child,
-    );
-  }
+  Widget build(BuildContext context) => Schedule(
+        events: _events,
+        updatedEvents: _updatedEvents,
+        child: widget.child,
+      );
 }

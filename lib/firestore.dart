@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'app_storage.dart' as appStorage;
 import 'config.dart';
+import 'festival_config.dart';
 
 Future<Firestore> initFirestore() async {
   final app = await FirebaseApp.configure(
@@ -15,6 +17,76 @@ Future<Firestore> initFirestore() async {
   );
   return firestore;
 }
+
+class FirebaseData {
+  const FirebaseData({
+    this.collection = const <DocumentSnapshot>[],
+    this.updates = const <DocumentSnapshot>[],
+  });
+
+  final List<DocumentSnapshot> collection;
+  final List<DocumentSnapshot> updates;
+}
+
+Future<FirebaseData> loadData(
+  Firestore firestore,
+  String collectionName,
+) async {
+  final reference = firestore
+      .collection('festivals')
+      .document(festivalFirestoreKey)
+      .collection(collectionName);
+  final appStorageKey = '$collectionName-lastUpdated';
+  final int lastUpdated =
+      (await appStorage.loadJson(appStorageKey)).orElse(null);
+  final source = lastUpdated == null ? Source.server : Source.cache;
+  final now = DateTime.now();
+  // Load collection
+  final collection = await _loadCollection(reference, source);
+  final updates = lastUpdated == null
+      ? <DocumentSnapshot>[]
+      : await _loadUpdates(
+          reference,
+          DateTime.fromMillisecondsSinceEpoch(lastUpdated),
+        );
+  if (collection.isNotEmpty && (lastUpdated == null || updates.isNotEmpty)) {
+    // Update lastUpdated timestamp in app storage
+    appStorage.storeJson(
+      appStorageKey,
+      now.millisecondsSinceEpoch,
+    );
+  }
+  return FirebaseData(
+    collection: collection,
+    updates: updates,
+  );
+}
+
+Future<List<DocumentSnapshot>> _loadCollection(
+  CollectionReference reference,
+  Source source,
+) =>
+    reference
+        .getDocuments(source: source)
+        .then<List<DocumentSnapshot>>((snapshot) => snapshot.documents)
+        .catchError((error) {
+      print(error);
+      return <DocumentSnapshot>[];
+    });
+
+Future<List<DocumentSnapshot>> _loadUpdates(
+  CollectionReference reference,
+  DateTime lastUpdated,
+) =>
+    reference
+        .where('updated',
+            isGreaterThanOrEqualTo: Timestamp.fromDate(lastUpdated))
+        .getDocuments(source: Source.server)
+        .then<List<DocumentSnapshot>>((snapshot) => snapshot.documents)
+        .catchError((error) {
+      print(error);
+      return <DocumentSnapshot>[];
+    });
 
 // Future<void> runInitFirebaseApp() async {
 //   final Firestore firestore = await initFirestore();

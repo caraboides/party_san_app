@@ -6,9 +6,9 @@ import 'package:party_san/i18n.dart';
 import 'package:party_san/model.dart';
 import 'package:party_san/notifications.dart';
 
-main() {
+void main() {
   final i18n = en;
-  final List<MethodCall> notificationLog = <MethodCall>[];
+  final notificationLog = <MethodCall>[];
   List<Map<dynamic, dynamic>> pendingNotifications;
 
   setUpAll(() {

@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
 import 'package:optional/optional_internal.dart';
+
+import 'firestore.dart';
 import 'model.dart';
 
 class Bands extends InheritedWidget {
@@ -40,20 +42,12 @@ class BandsProvider extends StatefulWidget {
 
 class BandsProviderState extends State<BandsProvider> {
   Future<ImmortalMap<String, BandData>> _loadInitialData() async {
-    final bandRef = widget.firestore
-        .collection('festivals')
-        .document('party.san_2019')
-        .collection('bands');
-    return bandRef
-        .getDocuments()
-        .then<ImmortalMap<String, BandData>>((snapshot) =>
-            snapshot.documents.isEmpty
-                ? _loadFallbackData()
-                : _parseBands(snapshot.documents))
-        .catchError((error) {
-      print(error);
-      return _loadFallbackData();
-    });
+    final firebaseData = await loadData(widget.firestore, 'bands');
+    final bands = firebaseData.collection.isEmpty
+        ? await _loadFallbackData()
+        : _parseBands(firebaseData.collection);
+    final updatedBands = _parseBands(firebaseData.updates);
+    return bands.addAll(updatedBands);
   }
 
   Future<ImmortalMap<String, BandData>> _loadFallbackData() =>
