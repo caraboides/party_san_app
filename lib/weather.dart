@@ -37,11 +37,12 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
   Weather getWeatherForDate(List<Weather> weathers, DateTime date) =>
       weathers.firstWhere(
-        (current) => isSameDay(current.date, date), // TODO(SF): korrekt?
+        (current) => isSameDay(current.date, date) && current.date.hour == 14,
         orElse: () => null,
       );
 
   Widget _buildWeatherCard(Weather weather) => Card(
+        margin: EdgeInsets.only(left: 4, top: 4, right: 4, bottom: 1),
         child: Container(
           height: 40,
           child: Row(
