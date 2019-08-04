@@ -28,6 +28,8 @@ class AppLocalizations {
     this.roots,
     this.style,
     this.playOnSpotify,
+    this.weatherDataBy,
+    this.fontByFormat,
   });
   /*: TODO(SF) why does this not work?
         this.timeFormat = DateFormat(timeFormatString, locale),
@@ -54,6 +56,8 @@ class AppLocalizations {
   final String roots;
   final String style;
   final String playOnSpotify;
+  final String weatherDataBy;
+  final String fontByFormat;
 
   // final DateFormat timeFormat;
   // final DateFormat dateTimeFormat;
@@ -69,6 +73,8 @@ class AppLocalizations {
 
   String dayTitle(int number) =>
       dayTitleFormat.replaceAll('{number}', number.toString());
+
+  String fontBy(String fontName) => fontByFormat.replaceAll('{font}', fontName);
 
   static const delegate = AppLocalizationsDelegate();
 
@@ -113,6 +119,8 @@ final AppLocalizations de = AppLocalizations(
   roots: 'Wurzeln',
   style: 'Stil',
   playOnSpotify: 'Reinhören bei Spotify',
+  weatherDataBy: 'Wetterdaten von:',
+  fontByFormat: 'Schriftart "{font}" von:',
 );
 
 final AppLocalizations en = AppLocalizations(
@@ -137,4 +145,6 @@ final AppLocalizations en = AppLocalizations(
   roots: 'Roots',
   style: 'Style',
   playOnSpotify: 'Play on Spotify',
+  weatherDataBy: 'Weather data provided by:',
+  fontByFormat: 'Font "{font}" by:',
 );

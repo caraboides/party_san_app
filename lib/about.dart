@@ -31,7 +31,7 @@ class About extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Icon(
-            heartIcon ? Icons.favorite : Icons.stars,
+            heartIcon ? Icons.favorite : Icons.star,
             color: heartIcon ? Colors.purple : Colors.white70,
           ),
           Column(
@@ -45,6 +45,11 @@ class About extends StatelessWidget {
             ],
           )
         ],
+      );
+
+  Widget get divider => Padding(
+        padding: EdgeInsets.only(bottom: 8),
+        child: Divider(color: FestivalTheme.dividerColor, height: 1),
       );
 
   @override
@@ -65,7 +70,7 @@ class About extends StatelessWidget {
         ),
         backgroundColor: theme.primaryColor,
         body: ListView(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
           children: <Widget>[
             Text('This is an unofficial app for the Party.San Open Air:'),
             Align(
@@ -78,7 +83,7 @@ class About extends StatelessWidget {
               child: _buildLink(
                   theme, 'https://github.com/caraboides/party_san_app'),
             ),
-            Divider(),
+            divider,
             SizedBox(height: 5),
             Text(i18n.aboutCreated),
             SizedBox(height: 10),
@@ -100,18 +105,22 @@ class About extends StatelessWidget {
               ],
               heartIcon: true,
             ),
-            Divider(),
+            divider,
             SizedBox(height: 5),
-            _buildCreator('Font "Pirata One" by:', <Widget>[
+            _buildCreator(i18n.weatherDataBy, <Widget>[
+              _buildLink(theme, 'https://openweathermap.org', shrink: true),
+            ]),
+            _buildCreator(i18n.fontBy('Pirata One'), <Widget>[
               _buildLink(theme, 'http://www.rfuenzalida.com/',
                   label: 'Rodrigo Fuenzalida', shrink: true),
             ]),
-            Divider(),
+            divider,
             GestureDetector(
               child: Image.asset('assets/mar.gif'),
               onTap: () => launch('http://www.metalheadsagainstracism.org/'),
             ),
-            Divider(),
+            SizedBox(height: 8),
+            divider,
             SizedBox(height: 5),
             RaisedButton(
               color: theme.accentColor,

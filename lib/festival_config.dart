@@ -16,6 +16,7 @@ const String festivalName = 'Party.San';
 const String festivalFirestoreKey = 'party.san_2019';
 
 const String geoLocationQuery = 'lat=51.25&lon=10.67';
+const String weatherCityId = '2838240';
 
 class FestivalTheme {
   static final ThemeData theme = ThemeData(
@@ -42,6 +43,7 @@ class FestivalTheme {
 
   static final Color menuBackgroundColor = theme.primaryColor;
   static final Color menuIconColor = theme.accentColor.withOpacity(0.87);
+  static final Color dividerColor = Colors.grey[800];
 
   static final TextStyle appBarTextStyle = theme.textTheme.display1;
   static final TextStyle bandNameTextStyle = theme.textTheme.headline;

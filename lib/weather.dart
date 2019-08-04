@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dcache/dcache.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'festival_config.dart';
 import 'open_weather.dart';
 import 'utils.dart';
 
@@ -41,21 +43,24 @@ class _WeatherWidgetState extends State<WeatherWidget> {
         orElse: () => null,
       );
 
-  Widget _buildWeatherCard(Weather weather) => Card(
-        margin: EdgeInsets.only(left: 4, top: 4, right: 4, bottom: 1),
-        child: Container(
-          height: 40,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                '${weather.temperature.celsius.toStringAsFixed(1)}°C  '
-                '${weather.weatherDescription}',
-              ),
-              Image.network(
-                'http://openweathermap.org/img/wn/${weather.weatherIcon}@2x.png',
-              ),
-            ],
+  Widget _buildWeatherCard(Weather weather) => GestureDetector(
+        onTap: () => launch('https://openweathermap.org/city/$weatherCityId'),
+        child: Card(
+          margin: EdgeInsets.only(left: 4, top: 4, right: 4, bottom: 1),
+          child: Container(
+            height: 40,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  '${weather.temperature.celsius.toStringAsFixed(1)}°C  '
+                  '${weather.weatherDescription}',
+                ),
+                Image.network(
+                  'http://openweathermap.org/img/wn/${weather.weatherIcon}@2x.png',
+                ),
+              ],
+            ),
           ),
         ),
       );
