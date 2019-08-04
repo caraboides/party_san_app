@@ -22,6 +22,7 @@ dependencies:
   cloud_firestore: ^0.12.8+1
   immortal: ^1.1.0
   cached_network_image: ^1.1.1
+  package_info: ^0.4.0+6
 
 dev_dependencies:
   flutter_test:

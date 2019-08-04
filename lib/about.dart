@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:package_info/package_info.dart';
 
 import 'festival_config.dart';
 import 'i18n.dart';
@@ -116,11 +117,12 @@ class About extends StatelessWidget {
               color: theme.accentColor,
               child: Text(
                   MaterialLocalizations.of(context).viewLicensesButtonLabel),
-              onPressed: () {
+              onPressed: () async {
+                final packageInfo = await PackageInfo.fromPlatform();
                 showLicensePage(
                   context: context,
                   applicationName: '$festivalName App',
-                  applicationVersion: '1.0.0', // TODO(SF): fill automatically?
+                  applicationVersion: packageInfo.version,
                   applicationLegalese: i18n.aboutLicense,
                 );
               },
