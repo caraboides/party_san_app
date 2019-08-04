@@ -16,13 +16,24 @@ class EventDetailView extends StatelessWidget {
   String _buildFlag(String country) =>
       String.fromCharCodes(country.runes.map((code) => code + 127397));
 
+  String _getDescription(AppLocalizations i18n, Locale locale, BandData data) {
+    if (locale.languageCode == 'en' && data.textEn != null) {
+      return data.textEn;
+    }
+    return data.text ?? i18n.noInfo;
+  }
+
   List<Widget> _buildDetails(
-          ThemeData theme, AppLocalizations i18n, BandData data) =>
+    ThemeData theme,
+    AppLocalizations i18n,
+    Locale locale,
+    BandData data,
+  ) =>
       <Widget>[
         Padding(
           padding:
               const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 15),
-          child: Text(data.text ?? i18n.noInfo),
+          child: Text(_getDescription(i18n, locale, data)),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -98,6 +109,7 @@ class EventDetailView extends StatelessWidget {
     final theme = Theme.of(context);
     final data = Bands.of(context, event.bandName);
     final isLiked = myScheduleController.mySchedule.isEventLiked(event.id);
+    final locale = Localizations.localeOf(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -158,7 +170,7 @@ class EventDetailView extends StatelessWidget {
               ),
             ),
             ...data
-                .map<List<Widget>>((d) => _buildDetails(theme, i18n, d))
+                .map<List<Widget>>((d) => _buildDetails(theme, i18n, locale, d))
                 .orElse(<Widget>[
               Container(
                 padding: const EdgeInsets.only(

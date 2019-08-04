@@ -37,6 +37,7 @@ class BandData {
     this.style,
     this.roots,
     this.text,
+    this.textEn,
   });
 
   final String name;
@@ -47,6 +48,7 @@ class BandData {
   final String style;
   final String roots;
   final String text;
+  final String textEn;
 }
 
 class MySchedule {

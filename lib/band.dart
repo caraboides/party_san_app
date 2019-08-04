@@ -56,22 +56,8 @@ class BandsProviderState extends State<BandsProvider> {
           .then<ImmortalMap<String, BandData>>(
               (v) => _parseJsonBands(jsonDecode(v)));
 
-  MapEntry<String, BandData> _parseBand(DocumentSnapshot snapshot) {
-    final data = snapshot.data;
-    return MapEntry(
-      snapshot.documentID,
-      BandData(
-        name: snapshot.documentID,
-        image: data['img'],
-        logo: data['logo'],
-        origin: data['origin'],
-        style: data['style'],
-        roots: data['roots'],
-        spotify: data['spotify'],
-        text: data['description'],
-      ),
-    );
-  }
+  MapEntry<String, BandData> _parseBand(DocumentSnapshot snapshot) =>
+      _parseJsonBand(snapshot.documentID, snapshot.data);
 
   ImmortalMap<String, BandData> _parseBands(List<DocumentSnapshot> snapshots) =>
       ImmortalMap.fromEntriesIterable(snapshots.map(_parseBand));
@@ -92,6 +78,7 @@ class BandsProviderState extends State<BandsProvider> {
           roots: data['roots'],
           spotify: data['spotify'],
           text: data['description'],
+          textEn: data['description_en'],
         ),
       );
 
