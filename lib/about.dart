@@ -72,12 +72,12 @@ class About extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
           children: <Widget>[
-            Text('This is an unofficial app for the Party.San Open Air:'),
+            Text(i18n.appDescription(festivalFullName)),
             Align(
               alignment: Alignment.center,
               child: _buildLink(theme, 'https://www.party-san.de'),
             ),
-            Text('Source code can be found under'),
+            Text(i18n.sourceCodeUnder),
             Align(
               alignment: Alignment.center,
               child: _buildLink(
