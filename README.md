@@ -10,11 +10,7 @@ A Flutter app to manage your festival. Feel free to fork and change it for your 
 
 Inc build number
  
-`flutter build apk --release`
-
-Upload to playstore and inc build number
-
-`flutter build apk --release --target-platform=android-arm64`
+`flutter build apk --target-platform android-arm,android-arm64 --split-per-abi`
 
 Upload to playstore.
 
