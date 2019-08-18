@@ -19,6 +19,7 @@ class AppLocalizations {
     this.eventDetailsHeader,
     this.eventNotificationFormat,
     this.about,
+    this.privacyPolicy,
     this.aboutLicense,
     this.aboutCreated,
     this.noInfo,
@@ -49,6 +50,7 @@ class AppLocalizations {
   final String eventDetailsHeader;
   final String eventNotificationFormat;
   final String about;
+  final String privacyPolicy;
   final String aboutLicense;
   final String aboutCreated;
   final String noInfo;
@@ -117,6 +119,7 @@ final AppLocalizations de = AppLocalizations(
   eventDetailsHeader: 'Band Details',
   eventNotificationFormat: '{band} spielen um {time} auf der {stage}!',
   about: 'Über diese App',
+  privacyPolicy: 'Datenschutzerklärung',
   aboutLicense: 'Copyright 2019 Projekt LilaHerz 💜',
   aboutCreated: 'Entwickelt von Projekt LilaHerz',
   noInfo: 'Sorry, keine Infos',
@@ -145,6 +148,7 @@ final AppLocalizations en = AppLocalizations(
   eventDetailsHeader: 'Band Details',
   eventNotificationFormat: '{band} plays at {time} on the {stage}!',
   about: 'About',
+  privacyPolicy: 'Privacy Policy',
   aboutLicense: 'Copyright 2019 Projekt LilaHerz 💜',
   aboutCreated: 'Created by Projekt LilaHerz',
   noInfo: 'Sorry, no info',

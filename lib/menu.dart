@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:party_san/festival_config.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'i18n.dart';
 
@@ -93,6 +94,17 @@ class Menu extends StatelessWidget {
                 color: FestivalTheme.menuIconColor,
               ),
               onTap: () => _pushOnHome(navigator, 'about'),
+            ),
+            ListTile(
+              title: Text(
+                i18n.privacyPolicy,
+                style: FestivalTheme.menuEntryTextStyle,
+              ),
+              leading: Icon(
+                Icons.verified_user,
+                color: FestivalTheme.menuIconColor,
+              ),
+              onTap: () => launch("https://bit.ly/2YNzXmR"),
             ),
           ],
         ),
